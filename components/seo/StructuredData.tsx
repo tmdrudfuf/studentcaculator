@@ -10,7 +10,7 @@ export function WebsiteStructuredData() {
     description: siteConfig.description,
   };
 
-  return <script type="application/ld+json">{JSON.stringify(data)}</script>;
+  return <script type="application/ld+json">{JSON.stringify(data).replace(/</g, "\\u003c")}</script>;
 }
 
 export function BreadcrumbStructuredData({ tool }: { tool: ToolDefinition }) {
@@ -34,5 +34,5 @@ export function BreadcrumbStructuredData({ tool }: { tool: ToolDefinition }) {
     ],
   };
 
-  return <script type="application/ld+json">{JSON.stringify(data)}</script>;
+  return <script type="application/ld+json">{JSON.stringify(data).replace(/</g, "\\u003c")}</script>;
 }

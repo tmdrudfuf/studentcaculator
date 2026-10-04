@@ -29,7 +29,7 @@ type RootLayoutProps = Readonly<{
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html data-scroll-behavior="smooth" lang="en">
       <body className="min-h-screen antialiased">
         <WebsiteStructuredData />
         <a

@@ -19,8 +19,11 @@ The development site runs at `http://localhost:3000`.
 npm run lint
 npm run typecheck
 npm test
+npm run test:e2e
 npm run build
 ```
+
+The E2E suite starts the development server automatically. Install its browser runtime once with `npx playwright install chromium`.
 
 ## Configuration
 

@@ -10,7 +10,8 @@
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "next": "16.3.8",
@@ -19,6 +20,8 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.3.3",
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0",
     "@testing-library/jest-dom": "7.0.1",
     "@testing-library/react": "16.3.3",
     "@types/node": "^24.0.0",

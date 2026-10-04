@@ -25,6 +25,7 @@ export function ToolCard({ tool }: ToolCardProps) {
   if (tool.status === "available") {
     return (
       <Link
+        aria-label={tool.name}
         className="block rounded-2xl transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700"
         href={tool.href}
       >
