@@ -3,3 +3,4 @@ export { FormField } from "./FormField";
 export { NumberField } from "./NumberField";
 export { PercentageField } from "./PercentageField";
 export { SubmitButton } from "./SubmitButton";
+export { TextAreaField } from "./TextAreaField";

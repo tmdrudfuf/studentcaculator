@@ -131,3 +131,17 @@ export type StudyTimeResult = {
   totalMinutes: number;
   minutesPerDay: number;
 };
+
+export type WordCountResult = {
+  wordCount: number;
+  characterCountWithSpaces: number;
+  characterCountWithoutSpaces: number;
+  sentenceCount: number;
+  paragraphCount: number;
+};
+
+export type ReadingTimeResult = {
+  wordCount: number;
+  wordsPerMinute: number;
+  minutes: number;
+};

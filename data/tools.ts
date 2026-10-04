@@ -136,7 +136,7 @@ export const tools = [
     category: "writing",
     href: "/writing/word-counter",
     relatedTools: ["reading-time-calculator"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "reading-time-calculator",
@@ -146,7 +146,7 @@ export const tools = [
     category: "writing",
     href: "/writing/reading-time-calculator",
     relatedTools: ["word-counter"],
-    status: "planned",
+    status: "available",
   },
 ] as const satisfies readonly ToolDefinition[];
 
