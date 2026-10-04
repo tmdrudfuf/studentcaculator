@@ -66,7 +66,7 @@ export const tools = [
     category: "grades",
     href: "/grades/gpa-calculator",
     relatedTools: ["cumulative-gpa-calculator", "target-gpa-calculator"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "cumulative-gpa-calculator",
@@ -76,7 +76,7 @@ export const tools = [
     category: "grades",
     href: "/grades/cumulative-gpa-calculator",
     relatedTools: ["gpa-calculator", "target-gpa-calculator"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "target-gpa-calculator",
@@ -86,7 +86,7 @@ export const tools = [
     category: "grades",
     href: "/grades/target-gpa-calculator",
     relatedTools: ["gpa-calculator", "cumulative-gpa-calculator"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "credit-completion-calculator",

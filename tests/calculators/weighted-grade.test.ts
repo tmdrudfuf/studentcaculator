@@ -34,4 +34,11 @@ describe("calculateWeightedGrade", () => {
     expect(result.normalizedGrade).toBeCloseTo(89.7475, 8);
     expect(result.overallContribution).toBeCloseTo(53.8485, 8);
   });
+
+  it("rejects combined weights above 100%", () => {
+    expect(() => calculateWeightedGrade([
+      { id: "one", weight: 60, grade: 90 },
+      { id: "two", weight: 50, grade: 80 },
+    ])).toThrow(RangeError);
+  });
 });

@@ -3,6 +3,10 @@ import type { FinalGradeInput, FinalGradeResult } from "@/types/calculator";
 const scenarioScores = [0, 25, 50, 75, 100] as const;
 
 export function calculateFinalGrade(input: FinalGradeInput): FinalGradeResult {
+  if (input.finalWeight <= 0 || input.finalWeight > 100) {
+    throw new RangeError("Final exam weight must be greater than 0 and at most 100.");
+  }
+
   const finalFraction = input.finalWeight / 100;
   const remainingFraction = 1 - finalFraction;
   const minimumPossibleGrade = input.currentGrade * remainingFraction;

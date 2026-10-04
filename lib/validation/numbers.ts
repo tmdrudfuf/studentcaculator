@@ -55,3 +55,21 @@ export function validatePercentage(
 
   return null;
 }
+
+export function validateGpa(value: number, label: string): string | null {
+  const numberError = validateFiniteNumber(value, label);
+
+  if (numberError) {
+    return numberError;
+  }
+
+  if (value < 0 || value > 4) {
+    return `${label} must be between 0.0 and 4.0.`;
+  }
+
+  return null;
+}
+
+export function validateCredits(value: number, label: string): string | null {
+  return validatePositiveNumber(value, label);
+}

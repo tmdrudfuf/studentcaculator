@@ -13,3 +13,7 @@ export function formatNumber(value: number, maximumFractionDigits = 2): string {
 export function formatPercentage(value: number): string {
   return `${percentageFormatter.format(value)}%`;
 }
+
+export function formatGpa(value: number): string {
+  return formatNumber(value, 2);
+}
