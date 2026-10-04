@@ -16,8 +16,8 @@ describe("tool registry", () => {
     expect(tools).toHaveLength(12);
     expect(new Set(tools.map((tool) => tool.slug))).toHaveLength(12);
     expect(new Set(tools.map((tool) => tool.href))).toHaveLength(12);
-    expect(tools.filter((tool) => tool.status === "available")).toHaveLength(8);
-    expect(tools.filter((tool) => tool.status === "planned")).toHaveLength(4);
+    expect(tools.filter((tool) => tool.status === "available")).toHaveLength(10);
+    expect(tools.filter((tool) => tool.status === "planned")).toHaveLength(2);
   });
 
   it("resolves tools and categories from the central registry", () => {

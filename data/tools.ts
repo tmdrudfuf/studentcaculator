@@ -116,7 +116,7 @@ export const tools = [
     category: "study",
     href: "/study/study-time-calculator",
     relatedTools: ["semester-countdown"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "semester-countdown",
@@ -126,7 +126,7 @@ export const tools = [
     category: "study",
     href: "/study/semester-countdown",
     relatedTools: ["study-time-calculator", "graduation-countdown"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "word-counter",

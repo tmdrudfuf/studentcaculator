@@ -120,3 +120,14 @@ export type GraduationCountdownResult = {
   daysUntil: number;
   targetDate: string;
 };
+
+export type StudyTimeInput = {
+  totalMinutes: number;
+  daysAvailable: number;
+};
+
+export type StudyTimeResult = {
+  daysAvailable: number;
+  totalMinutes: number;
+  minutesPerDay: number;
+};
