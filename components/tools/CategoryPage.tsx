@@ -37,7 +37,7 @@ export function CategoryPage({ category }: CategoryPageProps) {
             Tools in this category
           </h2>
           <p className="mt-2 text-slate-600">
-            Calculator functionality is intentionally reserved for the next development milestones.
+            Available calculators are ready to use. The remaining tools will arrive in later milestones.
           </p>
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">

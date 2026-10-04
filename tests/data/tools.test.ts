@@ -12,11 +12,12 @@ describe("tool registry", () => {
     ]);
   });
 
-  it("contains all twelve planned tools with unique slugs and hrefs", () => {
+  it("contains all twelve tools with unique slugs and hrefs", () => {
     expect(tools).toHaveLength(12);
     expect(new Set(tools.map((tool) => tool.slug))).toHaveLength(12);
     expect(new Set(tools.map((tool) => tool.href))).toHaveLength(12);
-    expect(tools.every((tool) => tool.status === "planned")).toBe(true);
+    expect(tools.filter((tool) => tool.status === "available")).toHaveLength(3);
+    expect(tools.filter((tool) => tool.status === "planned")).toHaveLength(9);
   });
 
   it("resolves tools and categories from the central registry", () => {

@@ -10,7 +10,7 @@ export type ToolDefinition = {
   category: ToolCategory;
   href: `/${ToolCategory}/${string}`;
   relatedTools: string[];
-  status: "planned";
+  status: "available" | "planned";
 };
 
 export type CategoryDefinition = {

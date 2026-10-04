@@ -36,7 +36,7 @@ export const tools = [
     category: "grades",
     href: "/grades/final-grade-calculator",
     relatedTools: ["weighted-grade-calculator", "gpa-calculator", "grade-percentage-calculator"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "grade-percentage-calculator",
@@ -46,7 +46,7 @@ export const tools = [
     category: "grades",
     href: "/grades/grade-percentage-calculator",
     relatedTools: ["final-grade-calculator", "weighted-grade-calculator"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "weighted-grade-calculator",
@@ -56,7 +56,7 @@ export const tools = [
     category: "grades",
     href: "/grades/weighted-grade-calculator",
     relatedTools: ["final-grade-calculator", "grade-percentage-calculator"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "gpa-calculator",
@@ -166,4 +166,14 @@ export function getToolsByCategory(category: ToolCategory): readonly ToolDefinit
 
 export function getTool(slug: string): ToolDefinition | undefined {
   return tools.find((tool) => tool.slug === slug);
+}
+
+export function getRequiredTool(slug: string): ToolDefinition {
+  const tool = getTool(slug);
+
+  if (!tool) {
+    throw new Error(`Unknown tool: ${slug}`);
+  }
+
+  return tool;
 }
