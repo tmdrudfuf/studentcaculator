@@ -101,3 +101,22 @@ export type TargetGpaResult = {
   maximumPossibleGpa: number;
   estimatedCreditsNeededAtMaxGpa: number | null;
 };
+
+export type CreditCompletionInput = {
+  completedCredits: number;
+  requiredCredits: number;
+};
+
+export type CreditCompletionResult = {
+  status: "in_progress" | "complete";
+  completedCredits: number;
+  requiredCredits: number;
+  remainingCredits: number;
+  percentageComplete: number;
+};
+
+export type GraduationCountdownResult = {
+  status: "upcoming" | "today" | "past";
+  daysUntil: number;
+  targetDate: string;
+};

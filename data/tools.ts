@@ -96,7 +96,7 @@ export const tools = [
     category: "planning",
     href: "/planning/credit-completion-calculator",
     relatedTools: ["graduation-countdown"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "graduation-countdown",
@@ -106,7 +106,7 @@ export const tools = [
     category: "planning",
     href: "/planning/graduation-countdown",
     relatedTools: ["credit-completion-calculator", "semester-countdown"],
-    status: "planned",
+    status: "available",
   },
   {
     slug: "study-time-calculator",
