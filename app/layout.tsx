@@ -5,6 +5,7 @@ import "./globals.css";
 
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { WebsiteStructuredData } from "@/components/seo/StructuredData";
 import { siteConfig } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = {
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className="min-h-screen antialiased">
+        <WebsiteStructuredData />
         <a
           className="fixed left-4 top-4 z-50 -translate-y-24 rounded-lg bg-slate-950 px-4 py-3 font-bold text-white transition focus:translate-y-0"
           href="#main-content"

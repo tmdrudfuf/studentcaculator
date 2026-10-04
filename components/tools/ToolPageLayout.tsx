@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { BreadcrumbStructuredData } from "@/components/seo/StructuredData";
+import { getToolContent } from "@/data/tool-content";
 import { getCategory } from "@/data/tools";
 import type { ToolDefinition } from "@/types/tools";
 
@@ -14,9 +16,11 @@ type ToolPageLayoutProps = {
 
 export function ToolPageLayout({ tool, children, explanation }: ToolPageLayoutProps) {
   const category = getCategory(tool.category);
+  const content = getToolContent(tool.slug);
 
   return (
     <main id="main-content">
+      <BreadcrumbStructuredData tool={tool} />
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
           <nav aria-label="Breadcrumb" className="text-sm font-bold text-blue-700">
@@ -50,6 +54,38 @@ export function ToolPageLayout({ tool, children, explanation }: ToolPageLayoutPr
           <RelatedTools tool={tool} />
         </aside>
       </div>
+      <section className="border-t border-slate-200 bg-white">
+        <div className="mx-auto grid max-w-5xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-2">
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-2xl font-black tracking-tight text-slate-950">Example</h2>
+              <p className="mt-3 leading-7 text-slate-600">{content.example}</p>
+            </div>
+            <div>
+              <h2 className="text-2xl font-black tracking-tight text-slate-950">Formula</h2>
+              <p className="mt-3 rounded-xl bg-slate-100 p-4 font-mono text-sm leading-6 text-slate-800">
+                {content.formula}
+              </p>
+            </div>
+          </div>
+          <div>
+            <h2 className="text-2xl font-black tracking-tight text-slate-950">Frequently asked questions</h2>
+            <div className="mt-5 divide-y divide-slate-200 border-y border-slate-200">
+              {content.faq.map((item) => (
+                <details className="group py-4" key={item.question}>
+                  <summary className="cursor-pointer list-none font-bold text-slate-900 marker:hidden">
+                    <span className="flex items-center justify-between gap-4">
+                      {item.question}
+                      <span aria-hidden="true" className="text-blue-700 group-open:rotate-45">+</span>
+                    </span>
+                  </summary>
+                  <p className="mt-3 pr-8 leading-7 text-slate-600">{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
