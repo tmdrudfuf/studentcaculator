@@ -1,7 +1,7 @@
-import Link from "next/link";
-
 import { getTool } from "@/data/tools";
 import type { ToolDefinition } from "@/types/tools";
+
+import { TrackedToolLink } from "./TrackedToolLink";
 
 type RelatedToolsProps = {
   tool: ToolDefinition;
@@ -17,9 +17,14 @@ export function RelatedTools({ tool }: RelatedToolsProps) {
         {relatedTools.map((relatedTool) => (
           <li key={relatedTool.slug}>
             {relatedTool.status === "available" ? (
-              <Link className="font-semibold text-blue-700 hover:text-blue-900" href={relatedTool.href}>
+              <TrackedToolLink
+                className="font-semibold text-blue-700 hover:text-blue-900"
+                destinationTool={relatedTool.slug}
+                href={relatedTool.href}
+                sourceTool={tool.slug}
+              >
                 {relatedTool.name} →
-              </Link>
+              </TrackedToolLink>
             ) : (
               <span className="flex items-center justify-between gap-3 text-sm text-slate-500">
                 {relatedTool.name}
