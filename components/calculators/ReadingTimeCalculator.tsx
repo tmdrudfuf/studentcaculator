@@ -55,19 +55,21 @@ export function ReadingTimeCalculator() {
       <form className="space-y-5" noValidate onSubmit={handleSubmit}>
         <NumberField error={error} id="reading-word-count" label="Word count" min={0} onChange={(e) => setWordCount(e.target.value)} placeholder="1200" step="1" value={wordCount} />
         <div className="space-y-2">
-          <label className="block text-sm font-bold text-slate-800" htmlFor="reading-speed">Reading speed</label>
-          <select className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-100" id="reading-speed" onChange={(e) => setSpeedId(e.target.value as ReadingSpeedId)} value={speedId}>
+          <label className="block text-sm font-semibold text-gray-950" htmlFor="reading-speed">Reading speed</label>
+          <select className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-hidden focus:border-gray-950 focus:ring-4 focus:ring-gray-950/10" id="reading-speed" onChange={(e) => setSpeedId(e.target.value as ReadingSpeedId)} value={speedId}>
             {readingSpeeds.map((speed) => <option key={speed.id} value={speed.id}>{speed.label} — {speed.wordsPerMinute} words/min</option>)}
           </select>
         </div>
         <SubmitButton className="w-full sm:w-auto">Estimate reading time</SubmitButton>
       </form>
-      {result ? (
-        <div className="mt-8 space-y-4" data-testid="reading-time-result">
-          <PrimaryResult eyebrow="Estimated reading time" explanation={`At ${formatNumber(result.wordsPerMinute, 0)} words per minute`} unit="min" value={displayedMinutes} />
-          <ResultMessage>This is an estimate; technical or unfamiliar material may take longer.</ResultMessage>
-        </div>
-      ) : null}
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8 space-y-4" data-testid="reading-time-result">
+            <PrimaryResult eyebrow="Estimated reading time" explanation={`At ${formatNumber(result.wordsPerMinute, 0)} words per minute`} unit="min" value={displayedMinutes} />
+            <ResultMessage>This is an estimate; technical or unfamiliar material may take longer.</ResultMessage>
+          </div>
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

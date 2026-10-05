@@ -18,8 +18,8 @@ export function TextAreaField({ id, label, hint, error, className = "", ...props
         {...props}
         aria-describedby={descriptionId}
         aria-invalid={error ? true : undefined}
-        className={`min-h-64 w-full resize-y rounded-xl border bg-white px-4 py-3 leading-7 text-slate-950 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100 ${
-          error ? "border-red-500" : "border-slate-300"
+        className={`min-h-64 w-full resize-y rounded-xl border bg-white px-4 py-3 leading-7 text-gray-950 outline-hidden transition focus:border-gray-950 focus:ring-4 focus:ring-gray-950/10 ${
+          error ? "border-red-500" : "border-gray-300"
         } ${className}`}
         id={id}
       />

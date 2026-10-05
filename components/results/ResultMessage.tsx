@@ -6,7 +6,7 @@ type ResultMessageProps = {
 };
 
 const toneClasses = {
-  info: "border-blue-200 bg-blue-50 text-blue-950",
+  info: "border-gray-200 bg-gray-50 text-gray-700",
   success: "border-emerald-200 bg-emerald-50 text-emerald-950",
   warning: "border-amber-200 bg-amber-50 text-amber-950",
 } as const;

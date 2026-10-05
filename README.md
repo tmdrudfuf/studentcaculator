@@ -2,8 +2,6 @@
 
 Static-first student utilities built with Next.js, strict TypeScript, and Tailwind CSS.
 
-Milestone 0 establishes the shared application foundation. Calculator routes and calculation logic are intentionally deferred to later milestones.
-
 ## Development
 
 ```bash
@@ -28,3 +26,17 @@ The E2E suite starts the development server automatically. Install its browser r
 ## Configuration
 
 Copy `.env.example` to `.env.local` when environment-specific values are needed. `NEXT_PUBLIC_SITE_URL` controls canonical metadata; it defaults to `https://studentsurvival.tools`.
+
+## Cloudflare Pages deployment
+
+The application uses Next.js static export mode. `npm run build` writes the deployable site to `out/`, so no server runtime, database, or Workers paid plan is required.
+
+Create a Cloudflare Pages project connected to this repository with:
+
+- Production branch: `main`
+- Build command: `npm run build`
+- Build output directory: `out`
+- Environment variable: `NEXT_PUBLIC_SITE_URL=https://<project-name>.pages.dev`
+- Optional analytics variable: `NEXT_PUBLIC_GA_ID`
+
+After the first deployment, replace `NEXT_PUBLIC_SITE_URL` with the final custom domain and redeploy before submitting the sitemap to search engines.

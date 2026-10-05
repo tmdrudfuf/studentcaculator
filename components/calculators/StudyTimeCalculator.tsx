@@ -53,12 +53,14 @@ export function StudyTimeCalculator() {
         <NumberField error={errors.days} id="study-days" label="Days available" min={0} onChange={(e) => setDaysAvailable(e.target.value)} placeholder="10" step="any" suffix="days" value={daysAvailable} />
         <div className="sm:col-span-2"><SubmitButton className="w-full sm:w-auto">Create study plan</SubmitButton></div>
       </form>
-      {result ? (
-        <div className="mt-8 space-y-4" data-testid="study-time-result">
-          <PrimaryResult eyebrow="Study each day" explanation={`For ${formatNumber(result.daysAvailable)} days`} value={formatDuration(result.minutesPerDay)} />
-          <ResultMessage>Your total study goal is {formatDuration(result.totalMinutes)}.</ResultMessage>
-        </div>
-      ) : null}
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8 space-y-4" data-testid="study-time-result">
+            <PrimaryResult eyebrow="Study each day" explanation={`For ${formatNumber(result.daysAvailable)} days`} value={formatDuration(result.minutesPerDay)} />
+            <ResultMessage>Your total study goal is {formatDuration(result.totalMinutes)}.</ResultMessage>
+          </div>
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

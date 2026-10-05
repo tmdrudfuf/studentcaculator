@@ -65,14 +65,16 @@ export function CumulativeGpaCalculator() {
         <NumberField error={errors.semesterCredits} id="semester-credits" label="This semester's credits" min={0} onChange={(e) => update("semesterCredits", e.target.value)} placeholder="15" step="any" value={values.semesterCredits} />
         <div className="sm:col-span-2"><SubmitButton className="w-full sm:w-auto">Calculate cumulative GPA</SubmitButton></div>
       </form>
-      {result ? (
-        <div className="mt-8 space-y-4" data-testid="cumulative-gpa-result">
-          <PrimaryResult eyebrow="Your new cumulative GPA" explanation={`After ${formatNumber(result.totalCredits)} total credits`} value={formatGpa(result.newGpa)} />
-          <ResultMessage tone={result.change >= 0 ? "success" : "warning"}>
-            Change from your previous GPA: {result.change >= 0 ? "+" : ""}{formatGpa(result.change)}
-          </ResultMessage>
-        </div>
-      ) : null}
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8 space-y-4" data-testid="cumulative-gpa-result">
+            <PrimaryResult eyebrow="Your new cumulative GPA" explanation={`After ${formatNumber(result.totalCredits)} total credits`} value={formatGpa(result.newGpa)} />
+            <ResultMessage tone={result.change >= 0 ? "success" : "warning"}>
+              Change from your previous GPA: {result.change >= 0 ? "+" : ""}{formatGpa(result.change)}
+            </ResultMessage>
+          </div>
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

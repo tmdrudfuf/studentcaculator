@@ -56,16 +56,18 @@ export function SemesterCountdown() {
         <DateField error={error} id="semester-end-date" label="Semester end date" onChange={(e) => setSemesterEndDate(e.target.value)} value={semesterEndDate} />
         <SubmitButton className="w-full sm:w-auto">Start semester countdown</SubmitButton>
       </form>
-      {result ? (
-        <div className="mt-8 space-y-4" data-testid="semester-countdown-result">
-          {result.status === "upcoming" ? (
-            <PrimaryResult eyebrow="Time left this semester" explanation={`${formatNumber(weekdays ?? 0, 0)} weekdays remain`} unit="days" value={formatNumber(result.daysUntil, 0)} />
-          ) : null}
-          {result.status === "today" ? <ResultMessage tone="success">The semester ends today.</ResultMessage> : null}
-          {result.status === "past" ? <ResultMessage tone="warning">That semester end date has passed.</ResultMessage> : null}
-          <p className="text-sm text-slate-500">Your date is stored only in this browser.</p>
-        </div>
-      ) : null}
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8 space-y-4" data-testid="semester-countdown-result">
+            {result.status === "upcoming" ? (
+              <PrimaryResult eyebrow="Time left this semester" explanation={`${formatNumber(weekdays ?? 0, 0)} weekdays remain`} unit="days" value={formatNumber(result.daysUntil, 0)} />
+            ) : null}
+            {result.status === "today" ? <ResultMessage tone="success">The semester ends today.</ResultMessage> : null}
+            {result.status === "past" ? <ResultMessage tone="warning">That semester end date has passed.</ResultMessage> : null}
+            <p className="text-sm text-gray-500">Your date is stored only in this browser.</p>
+          </div>
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

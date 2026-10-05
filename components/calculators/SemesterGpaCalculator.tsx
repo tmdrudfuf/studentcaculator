@@ -91,8 +91,8 @@ export function SemesterGpaCalculator() {
       <form noValidate onSubmit={handleSubmit}>
         <div className="space-y-5">
           {courses.map((course, index) => (
-            <fieldset className="rounded-2xl border border-slate-200 p-4 sm:p-5" key={course.id}>
-              <legend className="px-1 font-extrabold text-slate-900">Course {index + 1}</legend>
+            <fieldset className="rounded-2xl border border-gray-200 p-4 sm:p-5" key={course.id}>
+              <legend className="px-1 font-bold text-gray-900">Course {index + 1}</legend>
               <div className="flex justify-end">
                 {courses.length > 1 ? (
                   <button
@@ -106,11 +106,11 @@ export function SemesterGpaCalculator() {
               </div>
               <div className="mt-4 grid gap-4 sm:grid-cols-[1fr_8rem_8rem]">
                 <div className="space-y-2">
-                  <label className="block text-sm font-bold text-slate-800" htmlFor={`${course.id}-name`}>
-                    Course name <span className="font-normal text-slate-500">(optional)</span>
+                  <label className="block text-sm font-semibold text-gray-950" htmlFor={`${course.id}-name`}>
+                    Course name <span className="font-normal text-gray-500">(optional)</span>
                   </label>
                   <input
-                    className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+                    className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-hidden focus:border-gray-950 focus:ring-4 focus:ring-gray-950/10"
                     id={`${course.id}-name`}
                     onChange={(event) => updateCourse(course.id, { name: event.target.value })}
                     placeholder="Biology"
@@ -129,14 +129,14 @@ export function SemesterGpaCalculator() {
                   value={course.credits}
                 />
                 <div className="space-y-2">
-                  <label className="block text-sm font-bold text-slate-800" htmlFor={`${course.id}-grade`}>
+                  <label className="block text-sm font-semibold text-gray-950" htmlFor={`${course.id}-grade`}>
                     Grade
                   </label>
                   <select
                     aria-describedby={errors[course.id]?.grade ? `${course.id}-grade-error` : undefined}
                     aria-invalid={errors[course.id]?.grade ? true : undefined}
-                    className={`w-full rounded-xl border bg-white px-3 py-3 outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-100 ${
-                      errors[course.id]?.grade ? "border-red-500" : "border-slate-300"
+                    className={`w-full rounded-xl border bg-white px-3 py-3 outline-hidden focus:border-gray-950 focus:ring-4 focus:ring-gray-950/10 ${
+                      errors[course.id]?.grade ? "border-red-500" : "border-gray-300"
                     }`}
                     id={`${course.id}-grade`}
                     onChange={(event) => updateCourse(course.id, { grade: event.target.value as GradeLetter | "" })}
@@ -157,7 +157,7 @@ export function SemesterGpaCalculator() {
             </fieldset>
           ))}
         </div>
-        <button className="mt-5 font-bold text-blue-700 hover:text-blue-900" onClick={addCourse} type="button">
+        <button className="mt-5 inline-flex h-10 items-center rounded-xl border border-gray-200 px-4 text-sm font-medium text-gray-950 transition hover:bg-gray-50" onClick={addCourse} type="button">
           + Add course
         </button>
         <div className="mt-6">
@@ -165,18 +165,20 @@ export function SemesterGpaCalculator() {
         </div>
       </form>
 
-      {result ? (
-        <div className="mt-8 space-y-4" data-testid="semester-gpa-result">
-          <PrimaryResult
-            eyebrow="Your semester GPA"
-            explanation={`Across ${formatNumber(result.totalCredits)} credits`}
-            value={formatGpa(result.gpa)}
-          />
-          <ResultMessage>
-            Total quality points: {formatNumber(result.qualityPoints)}. Grade scales can vary by school.
-          </ResultMessage>
-        </div>
-      ) : null}
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8 space-y-4" data-testid="semester-gpa-result">
+            <PrimaryResult
+              eyebrow="Your semester GPA"
+              explanation={`Across ${formatNumber(result.totalCredits)} credits`}
+              value={formatGpa(result.gpa)}
+            />
+            <ResultMessage>
+              Total quality points: {formatNumber(result.qualityPoints)}. Grade scales can vary by school.
+            </ResultMessage>
+          </div>
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

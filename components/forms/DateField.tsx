@@ -21,8 +21,8 @@ export function DateField({ id, label, hint, error, className = "", ...inputProp
         {...inputProps}
         aria-describedby={descriptionId}
         aria-invalid={error ? true : undefined}
-        className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-950 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100 ${
-          error ? "border-red-500" : "border-slate-300"
+        className={`w-full rounded-xl border bg-white px-4 py-3 text-gray-950 outline-hidden transition focus:border-gray-950 focus:ring-4 focus:ring-gray-950/10 ${
+          error ? "border-red-500" : "border-gray-300"
         } ${className}`}
         id={id}
         type="date"

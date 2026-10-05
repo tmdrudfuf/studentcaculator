@@ -55,20 +55,22 @@ export function GraduationCountdown() {
         <DateField error={error} id="graduation-date" label="Graduation date" onChange={(e) => setGraduationDate(e.target.value)} value={graduationDate} />
         <SubmitButton className="w-full sm:w-auto">Start countdown</SubmitButton>
       </form>
-      {result ? (
-        <div className="mt-8 space-y-4" data-testid="graduation-countdown-result">
-          {result.status === "upcoming" ? (
-            <PrimaryResult eyebrow="Time until graduation" explanation={`About ${formatNumber(result.daysUntil / 7, 1)} weeks`} unit="days" value={formatNumber(result.daysUntil, 0)} />
-          ) : null}
-          {result.status === "today" ? (
-            <ResultMessage tone="success">Graduation day is here. Congratulations!</ResultMessage>
-          ) : null}
-          {result.status === "past" ? (
-            <ResultMessage tone="warning">That graduation date was {formatNumber(Math.abs(result.daysUntil), 0)} days ago.</ResultMessage>
-          ) : null}
-          <p className="text-sm text-slate-500">Your date is stored locally and is never sent with analytics.</p>
-        </div>
-      ) : null}
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8 space-y-4" data-testid="graduation-countdown-result">
+            {result.status === "upcoming" ? (
+              <PrimaryResult eyebrow="Time until graduation" explanation={`About ${formatNumber(result.daysUntil / 7, 1)} weeks`} unit="days" value={formatNumber(result.daysUntil, 0)} />
+            ) : null}
+            {result.status === "today" ? (
+              <ResultMessage tone="success">Graduation day is here. Congratulations!</ResultMessage>
+            ) : null}
+            {result.status === "past" ? (
+              <ResultMessage tone="warning">That graduation date was {formatNumber(Math.abs(result.daysUntil), 0)} days ago.</ResultMessage>
+            ) : null}
+            <p className="text-sm text-gray-500">Your date is stored locally and is never sent with analytics.</p>
+          </div>
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

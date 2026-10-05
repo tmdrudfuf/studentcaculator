@@ -115,57 +115,59 @@ export function FinalGradeCalculator() {
         <SubmitButton className="w-full sm:w-auto">Calculate final grade</SubmitButton>
       </form>
 
-      {result ? (
-        <div className="mt-8 space-y-5" data-testid="final-grade-result">
-          {result.status === "reachable" && result.requiredScore !== null ? (
-            <PrimaryResult
-              eyebrow="You need"
-              explanation="on your final exam to reach your desired course grade."
-              value={formatPercentage(result.requiredScore)}
-            />
-          ) : null}
-          {result.status === "already_secured" ? (
-            <ResultMessage tone="success">
-              Your desired grade is already secured even with a 0% on the final. Your minimum possible
-              course grade is {formatPercentage(result.minimumPossibleGrade)}.
-            </ResultMessage>
-          ) : null}
-          {result.status === "impossible" ? (
-            <>
-              <ResultMessage tone="warning">
-                This target is not reachable with the final exam alone.
-              </ResultMessage>
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8 space-y-5" data-testid="final-grade-result">
+            {result.status === "reachable" && result.requiredScore !== null ? (
               <PrimaryResult
-                eyebrow="Maximum possible grade"
-                explanation="if you score 100% on the final exam."
-                value={formatPercentage(result.maximumPossibleGrade)}
+                eyebrow="You need"
+                explanation="on your final exam to reach your desired course grade."
+                value={formatPercentage(result.requiredScore)}
               />
-            </>
-          ) : null}
+            ) : null}
+            {result.status === "already_secured" ? (
+              <ResultMessage tone="success">
+                Your desired grade is already secured even with a 0% on the final. Your minimum possible
+                course grade is {formatPercentage(result.minimumPossibleGrade)}.
+              </ResultMessage>
+            ) : null}
+            {result.status === "impossible" ? (
+              <>
+                <ResultMessage tone="warning">
+                  This target is not reachable with the final exam alone.
+                </ResultMessage>
+                <PrimaryResult
+                  eyebrow="Maximum possible grade"
+                  explanation="if you score 100% on the final exam."
+                  value={formatPercentage(result.maximumPossibleGrade)}
+                />
+              </>
+            ) : null}
 
-          <div className="overflow-hidden rounded-2xl border border-slate-200">
-            <table className="w-full border-collapse text-left text-sm">
-              <caption className="bg-slate-50 px-4 py-3 text-left font-bold text-slate-800">
-                Final exam scenarios
-              </caption>
-              <thead className="border-y border-slate-200 bg-white text-slate-600">
-                <tr>
-                  <th className="px-4 py-3 font-semibold" scope="col">Exam score</th>
-                  <th className="px-4 py-3 font-semibold" scope="col">Course grade</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 bg-white">
-                {result.scenarios.map((scenario) => (
-                  <tr key={scenario.examScore}>
-                    <td className="px-4 py-3">{formatPercentage(scenario.examScore)}</td>
-                    <td className="px-4 py-3 font-semibold">{formatPercentage(scenario.courseGrade)}</td>
+            <div className="overflow-hidden rounded-2xl border border-gray-200">
+              <table className="w-full border-collapse text-left text-sm">
+                <caption className="bg-gray-50 px-4 py-3 text-left font-bold text-gray-800">
+                  Final exam scenarios
+                </caption>
+                <thead className="border-y border-gray-200 bg-white text-gray-600">
+                  <tr>
+                    <th className="px-4 py-3 font-semibold" scope="col">Exam score</th>
+                    <th className="px-4 py-3 font-semibold" scope="col">Course grade</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-100 bg-white">
+                  {result.scenarios.map((scenario) => (
+                    <tr key={scenario.examScore}>
+                      <td className="px-4 py-3">{formatPercentage(scenario.examScore)}</td>
+                      <td className="px-4 py-3 font-semibold">{formatPercentage(scenario.courseGrade)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

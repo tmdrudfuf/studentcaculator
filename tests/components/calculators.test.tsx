@@ -1,7 +1,8 @@
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { FinalGradeCalculator } from "@/components/calculators/FinalGradeCalculator";
+import { FinalGradePreview } from "@/components/calculators/FinalGradePreview";
 import { GradePercentageCalculator } from "@/components/calculators/GradePercentageCalculator";
 import { WeightedGradeCalculator } from "@/components/calculators/WeightedGradeCalculator";
 
@@ -27,6 +28,14 @@ describe("FinalGradeCalculator", () => {
 
     expect(screen.getByLabelText("Current grade")).toBeInvalid();
     expect(screen.getAllByRole("alert")).toHaveLength(3);
+  });
+
+  it("focuses the first invalid field on submit", async () => {
+    render(<FinalGradeCalculator />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Calculate final grade" }));
+
+    await waitFor(() => expect(screen.getByLabelText("Current grade")).toHaveFocus());
   });
 });
 
@@ -91,5 +100,18 @@ describe("WeightedGradeCalculator", () => {
     fireEvent.click(screen.getByRole("button", { name: "Calculate weighted grade" }));
 
     expect(screen.getByText("Combined category weights cannot exceed 100%.")).toBeInTheDocument();
+  });
+});
+
+describe("FinalGradePreview", () => {
+  it("updates live and never throws on invalid input", () => {
+    render(<FinalGradePreview href="/grades/final-grade-calculator" />);
+
+    expect(screen.getByText("94%")).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText("Final weight"), { target: { value: "0" } });
+    expect(screen.getByText("Enter percentages between 0 and 100.")).toBeInTheDocument();
+    fireEvent.change(screen.getByLabelText("Final weight"), { target: { value: "10" } });
+    fireEvent.change(screen.getByLabelText("Goal grade"), { target: { value: "99" } });
+    expect(screen.getByText("Out of reach")).toBeInTheDocument();
   });
 });

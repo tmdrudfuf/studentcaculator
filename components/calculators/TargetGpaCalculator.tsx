@@ -66,28 +66,30 @@ export function TargetGpaCalculator() {
         <div className="sm:col-span-2"><SubmitButton className="w-full sm:w-auto">Check target GPA</SubmitButton></div>
       </form>
 
-      {result ? (
-        <div className="mt-8 space-y-4" data-testid="target-gpa-result">
-          {result.status === "reachable" && result.requiredGpa !== null ? (
-            <PrimaryResult eyebrow="GPA needed in upcoming credits" explanation="Using the standard US 4.0 scale" value={formatGpa(result.requiredGpa)} />
-          ) : null}
-          {result.status === "already_reached" ? (
-            <ResultMessage tone="success">You have already reached this cumulative GPA target.</ResultMessage>
-          ) : null}
-          {result.status === "impossible" ? (
-            <>
-              <ResultMessage tone="warning">This target is not reachable within the upcoming credits entered.</ResultMessage>
-              <PrimaryResult eyebrow="Maximum possible GPA" explanation="If you earn a 4.0 across all upcoming credits" value={formatGpa(result.maximumPossibleGpa)} />
-              {result.estimatedCreditsNeededAtMaxGpa !== null ? (
-                <ResultMessage>
-                  You would need about {formatNumber(Math.ceil(result.estimatedCreditsNeededAtMaxGpa), 0)} total future credits at a 4.0 to reach the target.
-                </ResultMessage>
-              ) : null}
-            </>
-          ) : null}
-          <p className="text-sm text-slate-500">Grade scales can vary by school.</p>
-        </div>
-      ) : null}
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8 space-y-4" data-testid="target-gpa-result">
+            {result.status === "reachable" && result.requiredGpa !== null ? (
+              <PrimaryResult eyebrow="GPA needed in upcoming credits" explanation="Using the standard US 4.0 scale" value={formatGpa(result.requiredGpa)} />
+            ) : null}
+            {result.status === "already_reached" ? (
+              <ResultMessage tone="success">You have already reached this cumulative GPA target.</ResultMessage>
+            ) : null}
+            {result.status === "impossible" ? (
+              <>
+                <ResultMessage tone="warning">This target is not reachable within the upcoming credits entered.</ResultMessage>
+                <PrimaryResult eyebrow="Maximum possible GPA" explanation="If you earn a 4.0 across all upcoming credits" value={formatGpa(result.maximumPossibleGpa)} />
+                {result.estimatedCreditsNeededAtMaxGpa !== null ? (
+                  <ResultMessage>
+                    You would need about {formatNumber(Math.ceil(result.estimatedCreditsNeededAtMaxGpa), 0)} total future credits at a 4.0 to reach the target.
+                  </ResultMessage>
+                ) : null}
+              </>
+            ) : null}
+            <p className="text-sm text-gray-500">Grade scales can vary by school.</p>
+          </div>
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

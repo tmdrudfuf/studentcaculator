@@ -31,14 +31,14 @@ export function NumberField({
           {...inputProps}
           aria-describedby={descriptionId}
           aria-invalid={error ? true : undefined}
-          className={`w-full rounded-xl border bg-white px-4 py-3 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-blue-600 focus:ring-4 focus:ring-blue-100 disabled:cursor-not-allowed disabled:bg-slate-100 ${
-            error ? "border-red-500" : "border-slate-300"
+          className={`w-full rounded-xl border bg-white px-4 py-3 text-gray-950 outline-hidden transition placeholder:text-gray-500 focus:border-gray-950 focus:ring-4 focus:ring-gray-950/10 disabled:cursor-not-allowed disabled:bg-gray-100 ${
+            error ? "border-red-500" : "border-gray-300"
           } ${suffix ? "pr-14" : ""} ${className}`}
           id={id}
           type="number"
         />
         {suffix ? (
-          <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-4 flex items-center font-semibold text-slate-500">
+          <span aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-4 flex items-center font-semibold text-gray-500">
             {suffix}
           </span>
         ) : null}

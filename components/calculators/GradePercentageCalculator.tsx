@@ -84,15 +84,17 @@ export function GradePercentageCalculator() {
         <SubmitButton className="w-full sm:w-auto">Calculate percentage</SubmitButton>
       </form>
 
-      {result ? (
-        <div className="mt-8" data-testid="grade-percentage-result">
-          <PrimaryResult
-            eyebrow="Your grade"
-            explanation={`${formatNumber(result.earnedPoints)} out of ${formatNumber(result.totalPoints)} points`}
-            value={formatPercentage(result.percentage)}
-          />
-        </div>
-      ) : null}
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8" data-testid="grade-percentage-result">
+            <PrimaryResult
+              eyebrow="Your grade"
+              explanation={`${formatNumber(result.earnedPoints)} out of ${formatNumber(result.totalPoints)} points`}
+              value={formatPercentage(result.percentage)}
+            />
+          </div>
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

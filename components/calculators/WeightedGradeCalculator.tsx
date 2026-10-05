@@ -120,8 +120,8 @@ export function WeightedGradeCalculator() {
       <form noValidate onSubmit={handleSubmit}>
         <div className="space-y-5">
           {categories.map((category, index) => (
-            <fieldset className="rounded-2xl border border-slate-200 p-4 sm:p-5" key={category.id}>
-              <legend className="px-1 font-extrabold text-slate-900">Category {index + 1}</legend>
+            <fieldset className="rounded-2xl border border-gray-200 p-4 sm:p-5" key={category.id}>
+              <legend className="px-1 font-bold text-gray-900">Category {index + 1}</legend>
               <div className="flex justify-end">
                 {categories.length > 1 ? (
                   <button
@@ -135,11 +135,11 @@ export function WeightedGradeCalculator() {
               </div>
               <div className="mt-4 space-y-4">
                 <div className="space-y-2">
-                  <label className="block text-sm font-bold text-slate-800" htmlFor={`${category.id}-name`}>
-                    Category name <span className="font-normal text-slate-500">(optional)</span>
+                  <label className="block text-sm font-semibold text-gray-950" htmlFor={`${category.id}-name`}>
+                    Category name <span className="font-normal text-gray-500">(optional)</span>
                   </label>
                   <input
-                    className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-950 outline-none transition focus:border-blue-600 focus:ring-4 focus:ring-blue-100"
+                    className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-950 outline-hidden transition focus:border-gray-950 focus:ring-4 focus:ring-gray-950/10"
                     id={`${category.id}-name`}
                     onChange={(event) => updateCategory(category.id, "name", event.target.value)}
                     placeholder="Homework"
@@ -181,7 +181,7 @@ export function WeightedGradeCalculator() {
         </div>
 
         <button
-          className="mt-5 rounded-lg font-bold text-blue-700 hover:text-blue-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700"
+          className="mt-5 inline-flex h-10 items-center rounded-xl border border-gray-200 px-4 text-sm font-medium text-gray-950 transition hover:bg-gray-50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-950"
           onClick={addCategory}
           type="button"
         >
@@ -199,19 +199,21 @@ export function WeightedGradeCalculator() {
         </div>
       </form>
 
-      {result ? (
-        <div className="mt-8 space-y-4" data-testid="weighted-grade-result">
-          <PrimaryResult
-            eyebrow="Your normalized current grade"
-            explanation={`Based on ${formatPercentage(result.totalWeight)} of your course.`}
-            value={formatPercentage(result.normalizedGrade)}
-          />
-          <ResultMessage>
-            Entered categories contribute {formatPercentage(result.overallContribution)} toward your final
-            course grade.
-          </ResultMessage>
-        </div>
-      ) : null}
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8 space-y-4" data-testid="weighted-grade-result">
+            <PrimaryResult
+              eyebrow="Your normalized current grade"
+              explanation={`Based on ${formatPercentage(result.totalWeight)} of your course.`}
+              value={formatPercentage(result.normalizedGrade)}
+            />
+            <ResultMessage>
+              Entered categories contribute {formatPercentage(result.overallContribution)} toward your final
+              course grade.
+            </ResultMessage>
+          </div>
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next";
 import { categories, tools } from "@/data/tools";
 import { siteConfig } from "@/lib/seo/metadata";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = [
     "/",

@@ -21,68 +21,71 @@ export function ToolPageLayout({ tool, children, explanation }: ToolPageLayoutPr
   return (
     <main id="main-content">
       <BreadcrumbStructuredData tool={tool} />
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
-          <nav aria-label="Breadcrumb" className="text-sm font-bold text-blue-700">
-            <Link className="hover:text-blue-900" href="/">
+      <header className="bg-white">
+        <div className="mx-auto max-w-6xl px-5 pt-12 pb-4 sm:px-8 lg:pt-16">
+          <nav aria-label="Breadcrumb" className="text-sm font-medium text-gray-600">
+            <Link className="hover:text-gray-950" href="/">
               Home
             </Link>
-            <span aria-hidden="true" className="mx-2 text-slate-400">
+            <span aria-hidden="true" className="mx-2 text-gray-400">
               /
             </span>
-            <Link className="hover:text-blue-900" href={category.href}>
+            <Link className="hover:text-gray-950" href={category.href}>
               {category.name}
             </Link>
           </nav>
-          <p className="mt-8 text-sm font-extrabold uppercase tracking-[0.2em] text-blue-700">
-            {tool.question}
-          </p>
-          <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">
+          <p className="mt-8 text-lg font-medium text-gray-600">{tool.question}</p>
+          <h1 className="mt-2 text-4xl font-bold leading-[1.1] tracking-tight text-balance text-gray-950 sm:text-5xl lg:text-6xl">
             {tool.name}
           </h1>
-          <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{tool.description}</p>
+          <p className="mt-5 max-w-2xl text-xl leading-relaxed text-gray-600">{tool.description}</p>
         </div>
       </header>
 
-      <div className="mx-auto grid max-w-5xl gap-10 px-5 py-12 sm:px-8 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-start">
+      <div className="mx-auto grid max-w-6xl gap-8 px-5 py-10 sm:px-8 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start">
         {children}
-        <aside className="space-y-6 lg:sticky lg:top-6">
-          <section className="rounded-2xl border border-slate-200 bg-white p-6">
-            <h2 className="font-extrabold text-slate-950">How it works</h2>
-            <div className="mt-3 space-y-3 text-sm leading-6 text-slate-600">{explanation}</div>
+        <aside className="space-y-6 lg:sticky lg:top-24">
+          <section className="rounded-2xl border border-gray-200 bg-white p-6">
+            <h2 className="font-bold tracking-tight text-gray-950">How it works</h2>
+            <div className="mt-3 space-y-3 text-sm leading-6 text-gray-600">{explanation}</div>
           </section>
           <RelatedTools tool={tool} />
         </aside>
       </div>
-      <section className="border-t border-slate-200 bg-white">
-        <div className="mx-auto grid max-w-5xl gap-10 px-5 py-14 sm:px-8 lg:grid-cols-2">
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-2xl font-black tracking-tight text-slate-950">Example</h2>
-              <p className="mt-3 leading-7 text-slate-600">{content.example}</p>
-            </div>
-            <div>
-              <h2 className="text-2xl font-black tracking-tight text-slate-950">Formula</h2>
-              <p className="mt-3 rounded-xl bg-slate-100 p-4 font-mono text-sm leading-6 text-slate-800">
-                {content.formula}
-              </p>
-            </div>
+
+      <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-2xl border border-gray-200 p-6 sm:p-8">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-950">Example</h2>
+            <p className="mt-3 leading-7 text-gray-600">{content.example}</p>
           </div>
-          <div>
-            <h2 className="text-2xl font-black tracking-tight text-slate-950">Frequently asked questions</h2>
-            <div className="mt-5 divide-y divide-slate-200 border-y border-slate-200">
-              {content.faq.map((item) => (
-                <details className="group py-4" key={item.question}>
-                  <summary className="cursor-pointer list-none font-bold text-slate-900 marker:hidden">
-                    <span className="flex items-center justify-between gap-4">
-                      {item.question}
-                      <span aria-hidden="true" className="text-blue-700 group-open:rotate-45">+</span>
-                    </span>
-                  </summary>
-                  <p className="mt-3 pr-8 leading-7 text-slate-600">{item.answer}</p>
-                </details>
-              ))}
+          <div className="overflow-hidden rounded-2xl bg-gray-950 shadow-xl">
+            <div className="flex items-center gap-2 border-b border-white/10 bg-white/5 px-4 py-3">
+              <span aria-hidden="true" className="size-3 rounded-full bg-[#FF5F56]" />
+              <span aria-hidden="true" className="size-3 rounded-full bg-[#FFBD2E]" />
+              <span aria-hidden="true" className="size-3 rounded-full bg-[#27C93F]" />
+              <h2 className="ml-auto font-mono text-xs text-emerald-400">Formula</h2>
             </div>
+            <p className="p-6 font-mono text-sm leading-7 break-words text-white/85 sm:p-8">{content.formula}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-gray-200">
+        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 lg:py-20">
+          <h2 className="text-center text-3xl font-bold tracking-tight text-gray-950 sm:text-4xl">Frequently asked questions</h2>
+          <div className="mt-12 grid items-start gap-x-16 md:grid-cols-2">
+            {content.faq.map((item) => (
+              <details className="group border-b border-gray-200 py-5" key={item.question}>
+                <summary className="cursor-pointer list-none font-semibold text-gray-950 marker:hidden">
+                  <span className="flex items-center justify-between gap-4">
+                    {item.question}
+                    <span aria-hidden="true" className="text-xl text-gray-500 transition-transform group-open:rotate-45">+</span>
+                  </span>
+                </summary>
+                <p className="mt-3 pr-8 leading-7 text-gray-600">{item.answer}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>

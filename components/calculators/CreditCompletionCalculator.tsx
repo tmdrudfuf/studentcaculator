@@ -53,16 +53,18 @@ export function CreditCompletionCalculator() {
         <NumberField error={errors.required} id="credits-required" label="Credits required" min={0} onChange={(e) => setRequiredCredits(e.target.value)} placeholder="120" step="any" value={requiredCredits} />
         <div className="sm:col-span-2"><SubmitButton className="w-full sm:w-auto">Check credit progress</SubmitButton></div>
       </form>
-      {result ? (
-        <div className="mt-8 space-y-4" data-testid="credit-completion-result">
-          <PrimaryResult eyebrow="Program completed" explanation={`${formatNumber(result.completedCredits)} of ${formatNumber(result.requiredCredits)} credits`} value={formatPercentage(result.percentageComplete)} />
-          {result.status === "complete" ? (
-            <ResultMessage tone="success">You have met the credit total entered.</ResultMessage>
-          ) : (
-            <ResultMessage>You have {formatNumber(result.remainingCredits)} credits remaining.</ResultMessage>
-          )}
-        </div>
-      ) : null}
+      <div aria-live="polite">
+        {result ? (
+          <div className="mt-8 space-y-4" data-testid="credit-completion-result">
+            <PrimaryResult eyebrow="Program completed" explanation={`${formatNumber(result.completedCredits)} of ${formatNumber(result.requiredCredits)} credits`} value={formatPercentage(result.percentageComplete)} />
+            {result.status === "complete" ? (
+              <ResultMessage tone="success">You have met the credit total entered.</ResultMessage>
+            ) : (
+              <ResultMessage>You have {formatNumber(result.remainingCredits)} credits remaining.</ResultMessage>
+            )}
+          </div>
+        ) : null}
+      </div>
     </CalculatorCard>
   );
 }

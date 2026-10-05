@@ -49,9 +49,9 @@ export function WordCounter() {
       />
       <dl className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3" data-testid="word-count-result">
         {metrics.map(([label, value]) => (
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4" key={label}>
-            <dt className="text-xs font-bold uppercase tracking-wide text-slate-500">{label}</dt>
-            <dd className="mt-2 text-2xl font-black text-slate-950">{value}</dd>
+          <div className="rounded-xl border border-gray-200 bg-gray-50 p-4" key={label}>
+            <dt className="text-xs font-bold uppercase tracking-wide text-gray-500">{label}</dt>
+            <dd className="mt-2 text-2xl font-bold text-gray-950">{value}</dd>
           </div>
         ))}
       </dl>

@@ -2,30 +2,58 @@ import Link from "next/link";
 
 import { categories } from "@/data/tools";
 
+const siteLinks = [
+  { name: "About", href: "/about" },
+  { name: "Privacy", href: "/privacy" },
+  { name: "Contact", href: "/contact" },
+];
+
+const linkClass = "text-sm text-gray-600 transition-colors hover:text-gray-950";
+const headingClass = "mb-4 text-xs font-bold uppercase tracking-widest text-gray-950";
+
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 text-slate-300">
-      <div className="mx-auto grid max-w-6xl gap-8 px-5 py-10 sm:grid-cols-[1fr_auto] sm:px-8">
-        <div>
-          <p className="font-bold text-white">Student Survival Tools</p>
-          <p className="mt-2 max-w-md text-sm leading-6 text-slate-400">
-            Straightforward academic tools that keep your work in your browser.
-          </p>
+    <footer className="border-t border-gray-200 bg-white">
+      <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
+        <div className="grid gap-10 sm:grid-cols-2">
+          <div>
+            <Link className="font-mono text-lg font-bold tracking-tight text-gray-950" href="/">
+              Student Survival Tools
+            </Link>
+            <p className="mt-3 max-w-xs text-sm leading-6 text-gray-600">
+              Straightforward academic tools that keep your work in your browser.
+            </p>
+          </div>
+          <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-10">
+            <div>
+              <h2 className={headingClass}>Tools</h2>
+              <ul className="space-y-2">
+                {categories.map((category) => (
+                  <li key={category.slug}>
+                    <Link className={linkClass} href={category.href}>
+                      {category.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h2 className={headingClass}>Site</h2>
+              <ul className="space-y-2">
+                {siteLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link className={linkClass} href={link.href}>
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
         </div>
-        <nav aria-label="Footer navigation">
-          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            {categories.map((category) => (
-              <li key={category.slug}>
-                <Link className="hover:text-white" href={category.href}>
-                  {category.name}
-                </Link>
-              </li>
-            ))}
-            <li><Link className="hover:text-white" href="/about">About</Link></li>
-            <li><Link className="hover:text-white" href="/privacy">Privacy</Link></li>
-            <li><Link className="hover:text-white" href="/contact">Contact</Link></li>
-          </ul>
-        </nav>
+        <p className="mt-12 border-t border-gray-100 pt-8 text-xs font-medium text-gray-500">
+          Results are estimates. Check your school&apos;s official policies for academic decisions.
+        </p>
       </div>
     </footer>
   );

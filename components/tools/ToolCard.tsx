@@ -8,17 +8,22 @@ type ToolCardProps = {
 
 export function ToolCard({ tool }: ToolCardProps) {
   const content = (
-    <article className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <article className="flex h-full flex-col rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
       <div className="flex items-start justify-between gap-4">
-        <h3 className="text-lg font-bold tracking-tight text-slate-950">{tool.name}</h3>
+        <h3 className="text-xl font-bold tracking-tight text-gray-950">{tool.name}</h3>
         {tool.status === "planned" ? (
           <span className="shrink-0 rounded-full bg-amber-100 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-amber-800">
             Planned
           </span>
         ) : null}
       </div>
-      <p className="mt-3 font-semibold text-blue-800">{tool.question}</p>
-      <p className="mt-2 text-sm leading-6 text-slate-600">{tool.description}</p>
+      <p className="mt-3 font-medium text-gray-950">{tool.question}</p>
+      <p className="mt-2 flex-grow leading-7 text-gray-600">{tool.description}</p>
+      {tool.status === "available" ? (
+        <span aria-hidden="true" className="mt-6 border-t border-gray-100 pt-4 text-sm font-semibold text-gray-950">
+          Open tool <span className="inline-block transition-transform motion-safe:group-hover:translate-x-1">→</span>
+        </span>
+      ) : null}
     </article>
   );
 
@@ -26,7 +31,7 @@ export function ToolCard({ tool }: ToolCardProps) {
     return (
       <Link
         aria-label={tool.name}
-        className="block rounded-2xl transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700"
+        className="group block h-full rounded-2xl transition motion-safe:hover:-translate-y-1 hover:shadow-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-950"
         href={tool.href}
       >
         {content}
