@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import "./globals.css";
 
+import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { WebsiteStructuredData } from "@/components/seo/StructuredData";
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html className={`${geistSans.variable} ${geistMono.variable}`} data-scroll-behavior="smooth" lang="en">
       <body className="min-h-screen antialiased">
+        <AdSenseScript />
         <WebsiteStructuredData />
         <a
           className="fixed left-4 top-4 z-[60] -translate-y-24 rounded-xl bg-gray-950 px-4 py-3 font-semibold text-white transition focus:translate-y-0"

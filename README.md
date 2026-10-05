@@ -25,7 +25,7 @@ The E2E suite starts the development server automatically. Install its browser r
 
 ## Configuration
 
-Copy `.env.example` to `.env.local` when environment-specific values are needed. `NEXT_PUBLIC_SITE_URL` controls canonical metadata; it defaults to `https://getschoolkit.com`.
+Copy `.env.example` to `.env.local` when environment-specific values are needed. `NEXT_PUBLIC_SITE_URL` controls canonical metadata; it defaults to `https://getschoolkit.com`. `NEXT_PUBLIC_ADSENSE_CLIENT_ID` identifies the public AdSense publisher account used by the production script.
 
 Production: [https://getschoolkit.com](https://getschoolkit.com)
 
@@ -40,5 +40,6 @@ Create a Cloudflare Pages project connected to this repository with:
 - Build output directory: `out`
 - Environment variable: `NEXT_PUBLIC_SITE_URL=https://getschoolkit.com`
 - Optional analytics variable: `NEXT_PUBLIC_GA_ID`
+- AdSense variable: `NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-3024928824650244`
 
 After the first deployment, replace `NEXT_PUBLIC_SITE_URL` with the final custom domain and redeploy before submitting the sitemap to search engines.
