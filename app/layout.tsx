@@ -35,8 +35,10 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html className={`${geistSans.variable} ${geistMono.variable}`} data-scroll-behavior="smooth" lang="en">
-      <body className="min-h-screen antialiased">
+      <head>
         <AdSenseScript />
+      </head>
+      <body className="min-h-screen antialiased">
         <WebsiteStructuredData />
         <a
           className="fixed left-4 top-4 z-[60] -translate-y-24 rounded-xl bg-gray-950 px-4 py-3 font-semibold text-white transition focus:translate-y-0"
