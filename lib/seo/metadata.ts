@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import type { ToolDefinition } from "@/types/tools";
 
-const fallbackSiteUrl = "https://studentsurvival.tools";
+const fallbackSiteUrl = "https://getschoolkit.com";
 
 export const siteConfig = {
   name: "Student Survival Tools",

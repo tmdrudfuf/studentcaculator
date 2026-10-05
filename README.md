@@ -25,7 +25,9 @@ The E2E suite starts the development server automatically. Install its browser r
 
 ## Configuration
 
-Copy `.env.example` to `.env.local` when environment-specific values are needed. `NEXT_PUBLIC_SITE_URL` controls canonical metadata; it defaults to `https://studentsurvival.tools`.
+Copy `.env.example` to `.env.local` when environment-specific values are needed. `NEXT_PUBLIC_SITE_URL` controls canonical metadata; it defaults to `https://getschoolkit.com`.
+
+Production: [https://getschoolkit.com](https://getschoolkit.com)
 
 ## Cloudflare Pages deployment
 
@@ -36,7 +38,7 @@ Create a Cloudflare Pages project connected to this repository with:
 - Production branch: `main`
 - Build command: `npm run build`
 - Build output directory: `out`
-- Environment variable: `NEXT_PUBLIC_SITE_URL=https://<project-name>.pages.dev`
+- Environment variable: `NEXT_PUBLIC_SITE_URL=https://getschoolkit.com`
 - Optional analytics variable: `NEXT_PUBLIC_GA_ID`
 
 After the first deployment, replace `NEXT_PUBLIC_SITE_URL` with the final custom domain and redeploy before submitting the sitemap to search engines.

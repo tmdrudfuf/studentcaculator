@@ -20,4 +20,11 @@ describe("SEO routes", () => {
     expect(robots().rules).toEqual({ userAgent: "*", disallow: "/" });
     vi.unstubAllEnvs();
   });
+
+  it("blocks Cloudflare preview deployments from crawling", () => {
+    vi.stubEnv("CF_PAGES", "1");
+    vi.stubEnv("CF_PAGES_BRANCH", "feature/preview");
+    expect(robots().rules).toEqual({ userAgent: "*", disallow: "/" });
+    vi.unstubAllEnvs();
+  });
 });
