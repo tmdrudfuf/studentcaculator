@@ -7,6 +7,7 @@ const siteLinks = [
   { name: "About", href: "/about" },
   { name: "Privacy", href: "/privacy" },
   { name: "Terms", href: "/terms" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const linkClass = "text-sm text-gray-600 transition-colors hover:text-gray-950";
