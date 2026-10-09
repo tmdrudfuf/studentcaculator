@@ -1,7 +1,9 @@
 import Link from "next/link";
 
 import { FinalGradePreview } from "@/components/calculators/FinalGradePreview";
+import { GuideCard } from "@/components/guides/GuideCard";
 import { ToolCard } from "@/components/tools/ToolCard";
+import { guides } from "@/data/guides";
 import { categories, getRequiredTool, getToolsByCategory, tools } from "@/data/tools";
 import { createMetadata } from "@/lib/seo/metadata";
 
@@ -130,6 +132,20 @@ export default function HomePage() {
               <ToolCard key={tool.slug} tool={tool} />
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-24">
+        <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+          <div>
+            <p className="font-mono text-sm text-gray-600">Learn the method</p>
+            <h2 className="mt-3 text-4xl font-bold tracking-tight text-balance text-gray-950">Guides for better decisions</h2>
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-gray-600">Understand the assumptions, check the arithmetic, and know when school-specific rules matter.</p>
+          </div>
+          <Link className="font-semibold text-gray-950 underline underline-offset-4" href="/guides">Browse all guides</Link>
+        </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {guides.slice(0, 4).map((guide) => <GuideCard guide={guide} key={guide.slug} />)}
         </div>
       </section>
 

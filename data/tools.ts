@@ -6,24 +6,64 @@ export const categories = [
     name: "Grades",
     description: "Understand where your grades stand and what it takes to reach your goals.",
     href: "/grades",
+    overview: [
+      "Grade calculations are most useful when the inputs match the rules in your syllabus. A points-based class, a weighted-category class, and a course with a heavily weighted final exam can produce different answers even when the visible scores look similar.",
+      "Start by identifying the question you need to answer. Use the percentage calculator for a single assignment, the weighted calculator for course categories, and the GPA tools only after confirming your school's grade-point scale and credit rules.",
+    ],
+    checklist: [
+      "Copy weights and point totals from the official syllabus or gradebook.",
+      "Check whether extra credit, dropped scores, or rounding rules apply.",
+      "Keep percentages and GPA values separate; they measure different things.",
+      "Treat every result as an estimate until it matches the school's official record.",
+    ],
   },
   {
     slug: "planning",
     name: "Planning",
     description: "Turn academic milestones and deadlines into a plan you can act on.",
     href: "/planning",
+    overview: [
+      "Academic planning works best when a large requirement is converted into a measurable next step. Credit totals show progress toward a program, while countdowns make the remaining calendar time visible.",
+      "These tools do not know your major requirements, transfer-credit rules, residency requirements, or institutional calendar. Use them to prepare questions and organize a plan, then verify the plan against your degree audit and academic calendar.",
+    ],
+    checklist: [
+      "Use the most recent degree audit rather than an old advising worksheet.",
+      "Separate earned credits from credits that are still in progress.",
+      "Confirm whether repeated, transferred, or pass/fail courses count.",
+      "Review the plan with an adviser before changing registration decisions.",
+    ],
   },
   {
     slug: "study",
     name: "Study",
     description: "Make the time you have easier to understand and use well.",
     href: "/study",
+    overview: [
+      "A useful study plan connects a clear workload with the real number of days available. Dividing hours evenly creates a baseline, but the final schedule should also account for class meetings, work shifts, sleep, and days when concentration will be limited.",
+      "Use the calculators to estimate the size of the commitment, then move the result into a calendar as specific study blocks. Short review sessions spread across several days are usually easier to protect than one large session at the end.",
+    ],
+    checklist: [
+      "Estimate the work in hours before dividing it across the calendar.",
+      "Reserve extra time for difficult subjects and practice exams.",
+      "Leave a buffer day for illness, work, or unexpected assignments.",
+      "Recalculate the daily target when the schedule changes.",
+    ],
   },
   {
     slug: "writing",
     name: "Writing",
     description: "Get quick, private feedback about the shape and length of your writing.",
     href: "/writing",
+    overview: [
+      "Length metrics can help you plan and revise a draft, but they do not measure argument quality, evidence, or clarity. A word count answers how much text exists; a reading-time estimate helps you think about the reader's time and the pace of a presentation.",
+      "The writing tools run in the browser so the text you enter is not sent to a server. Use the numbers as revision signals, then read the work aloud and compare it with the assignment rubric before submitting.",
+    ],
+    checklist: [
+      "Confirm whether the assignment counts headings, citations, and references.",
+      "Use paragraph counts to spot unusually dense or fragmented sections.",
+      "Estimate speaking time separately from silent reading time.",
+      "Do a content and citation review after meeting the length requirement.",
+    ],
   },
 ] as const satisfies readonly CategoryDefinition[];
 

@@ -6,9 +6,12 @@ import sitemap from "@/app/sitemap";
 describe("SEO routes", () => {
   it("includes every public route in the sitemap", () => {
     const entries = sitemap();
-    expect(entries).toHaveLength(20);
+    expect(entries).toHaveLength(25);
     expect(entries.some((entry) => entry.url.endsWith("/grades/final-grade-calculator"))).toBe(true);
     expect(entries.some((entry) => entry.url.endsWith("/privacy"))).toBe(true);
+    expect(entries.some((entry) => entry.url.endsWith("/guides/calculate-college-gpa"))).toBe(true);
+    expect(entries.some((entry) => entry.url.endsWith("/terms"))).toBe(true);
+    expect(entries.some((entry) => entry.url.endsWith("/contact"))).toBe(false);
   });
 
   it("allows production crawling", () => {

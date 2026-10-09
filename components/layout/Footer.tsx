@@ -3,9 +3,10 @@ import Link from "next/link";
 import { categories } from "@/data/tools";
 
 const siteLinks = [
+  { name: "Guides", href: "/guides" },
   { name: "About", href: "/about" },
   { name: "Privacy", href: "/privacy" },
-  { name: "Contact", href: "/contact" },
+  { name: "Terms", href: "/terms" },
 ];
 
 const linkClass = "text-sm text-gray-600 transition-colors hover:text-gray-950";

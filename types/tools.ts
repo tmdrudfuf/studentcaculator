@@ -18,4 +18,6 @@ export type CategoryDefinition = {
   name: string;
   description: string;
   href: `/${ToolCategory}`;
+  overview: readonly string[];
+  checklist: readonly string[];
 };

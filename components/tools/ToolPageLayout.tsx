@@ -53,6 +53,28 @@ export function ToolPageLayout({ tool, children, explanation }: ToolPageLayoutPr
         </aside>
       </div>
 
+      <section className="border-y border-gray-200 bg-gray-50/70">
+        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:px-8 lg:grid-cols-2 lg:py-20">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-950">What this calculation tells you</h2>
+            <div className="mt-5 space-y-4 text-lg leading-8 text-gray-600">
+              {content.overview.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </div>
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-950">Use it accurately</h2>
+            <ol className="mt-5 space-y-4">
+              {content.steps.map((step, index) => (
+                <li className="flex gap-4 leading-7 text-gray-600" key={step}>
+                  <span className="flex size-8 flex-none items-center justify-center rounded-full bg-gray-950 font-mono text-sm font-bold text-white">{index + 1}</span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="rounded-2xl border border-gray-200 p-6 sm:p-8">
@@ -68,6 +90,29 @@ export function ToolPageLayout({ tool, children, explanation }: ToolPageLayoutPr
             </div>
             <p className="p-6 font-mono text-sm leading-7 break-words text-white/85 sm:p-8">{content.formula}</p>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 pb-16 sm:px-8 lg:pb-20">
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="rounded-2xl border border-gray-200 p-6 sm:p-8 lg:col-span-2">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-950">How to interpret the result</h2>
+            <div className="mt-4 space-y-4 leading-7 text-gray-600">
+              {content.interpretation.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </div>
+          </div>
+          <div className="rounded-2xl border border-amber-200 bg-amber-50/60 p-6 sm:p-8">
+            <h2 className="text-xl font-bold tracking-tight text-gray-950">Common mistakes</h2>
+            <ul className="mt-4 space-y-3 text-sm leading-6 text-gray-700">
+              {content.commonMistakes.map((item) => <li className="flex gap-3" key={item}><span aria-hidden="true">•</span><span>{item}</span></li>)}
+            </ul>
+          </div>
+        </div>
+        <div className="mt-6 rounded-2xl bg-gray-950 p-6 text-white sm:p-8">
+          <h2 className="text-xl font-bold tracking-tight">Limits to keep in mind</h2>
+          <ul className="mt-4 grid gap-4 text-sm leading-6 text-white/75 md:grid-cols-3">
+            {content.limitations.map((item) => <li className="flex gap-3" key={item}><span aria-hidden="true" className="text-emerald-400">✓</span><span>{item}</span></li>)}
+          </ul>
         </div>
       </section>
 

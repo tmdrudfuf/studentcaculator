@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { categories, tools } from "@/data/tools";
+import { guides } from "@/data/guides";
 import { siteConfig } from "@/lib/seo/metadata";
 
 export const dynamic = "force-static";
@@ -10,9 +11,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     ...categories.map((category) => category.href),
     ...tools.map((tool) => tool.href),
+    "/guides",
+    ...guides.map((guide) => `/guides/${guide.slug}`),
     "/about",
     "/privacy",
-    "/contact",
+    "/terms",
   ];
 
   return paths.map((path) => ({

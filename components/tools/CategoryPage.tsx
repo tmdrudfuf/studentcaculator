@@ -37,6 +37,29 @@ export function CategoryPage({ category }: CategoryPageProps) {
           ))}
         </div>
       </section>
+      <section className="border-t border-gray-200 bg-gray-50/70">
+        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-16 sm:px-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:py-20">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight text-gray-950">Before you calculate</h2>
+            <div className="mt-5 space-y-4 text-lg leading-8 text-gray-600">
+              {definition.overview.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+          <aside className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8">
+            <h2 className="text-xl font-bold tracking-tight text-gray-950">Quick accuracy checklist</h2>
+            <ul className="mt-5 space-y-4 text-gray-600">
+              {definition.checklist.map((item) => (
+                <li className="flex gap-3 leading-7" key={item}>
+                  <span aria-hidden="true" className="mt-2 size-2 flex-none rounded-full bg-emerald-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      </section>
     </main>
   );
 }
