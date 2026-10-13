@@ -3,7 +3,7 @@ import type { ToolContent } from "@/types/content";
 export const toolContent = {
   "final-grade-calculator": {
     overview: [
-      "Use this calculator when one final exam is the only remaining graded item and your current percentage represents the work already completed. The calculation combines the completed portion of the course with the final exam's weight.",
+      "This final grade calculator answers the question, “What grade do I need on my final?” Use it when one final exam is the only remaining graded item and your current percentage represents the work already completed. The calculation combines the completed portion of the course with the final exam's weight.",
       "Before entering values, check whether the gradebook ignores ungraded work or counts it as zero. Projects, attendance, extra credit, or other remaining assignments should be included separately because they change the result.",
     ],
     steps: ["Confirm what the current grade includes.", "Enter the final exam's percentage weight.", "Enter the overall course percentage you want.", "Compare the result with the possible score range and course policy."],
@@ -13,10 +13,12 @@ export const toolContent = {
     limitations: ["Does not include curves, extra credit, dropped work, replacement exams, or multiple remaining assignments.", "Letter-grade cutoffs and rounding policies vary by course.", "The official gradebook remains the final authority."],
     commonMistakes: ["Entering exam points instead of its course weight.", "Using a current grade that already counts the final as zero.", "Assuming extra credit is available without confirming the policy."],
     faq: [
-      { question: "What if the required score is above 100%?", answer: "The target is not reachable from the final alone. Use the maximum possible course grade to set a realistic target." },
-      { question: "Does the calculator round during the calculation?", answer: "No. Full precision is kept internally and values are rounded only for display." },
-      { question: "Can I use this when several assignments remain?", answer: "Not directly. Model all remaining work with the weighted grade calculator first." },
-      { question: "Should I enter a letter grade?", answer: "No. Enter the numeric percentage and use the syllabus to interpret it as a letter grade." },
+      { question: "What grade do I need on my final exam?", answer: "Enter your current course grade, the final exam weight, and your target course grade. The calculator subtracts the contribution from completed work and divides the remaining points by the final's weight to find the exam score you need." },
+      { question: "What score do I need on my final to pass the class?", answer: "Use the minimum passing course percentage as your target grade. For example, if 70% is required to pass, enter 70 as the target and confirm the exact passing cutoff in your syllabus." },
+      { question: "How much can a final exam raise my grade?", answer: "That depends on the final's course weight. A heavily weighted final can move the overall grade more than a lightly weighted one. Enter 100% as the final score in your course calculation to find the highest possible overall grade." },
+      { question: "What if the grade needed on my final is above 100%?", answer: "The target is not reachable from the final alone under the values entered. Use the maximum possible course grade to choose a realistic target and check whether extra credit or other work remains." },
+      { question: "Can I use this calculator when several assignments remain?", answer: "Not directly. Combine the remaining assignments with the weighted grade calculator first, or treat them as one remaining weighted group only when your syllabus allows that model." },
+      { question: "Does this final grade calculator work for high school and college?", answer: "Yes, when the course uses percentage grades and one weighted final exam remains. School-specific curves, letter-grade cutoffs, rounding, and replacement-exam rules still need to be checked separately." },
     ],
   },
   "grade-percentage-calculator": {

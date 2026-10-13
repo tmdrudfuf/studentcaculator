@@ -8,8 +8,8 @@ import { categories, getRequiredTool, getToolsByCategory, tools } from "@/data/t
 import { createMetadata } from "@/lib/seo/metadata";
 
 export const metadata = createMetadata({
-  title: "Student Survival Tools",
-  description: "Simple, private tools for grades, planning, studying, and writing.",
+  title: "Free Student Grade & GPA Calculators",
+  description: "Free student calculators for final grades, weighted grades, GPA, study planning, and writing. Get instant answers with no account required.",
 });
 
 const featuredTools = [
@@ -46,11 +46,11 @@ export default function HomePage() {
           <div>
             <p className="font-mono text-sm text-gray-600">School is complicated. The tools should not be.</p>
             <h1 className="mt-5 text-4xl font-bold leading-[1.1] tracking-tight text-balance text-gray-950 sm:text-5xl lg:text-6xl">
-              Clear answers for the questions students ask every week.
+              Free calculators for grades, GPA, study planning, and writing.
             </h1>
             <p className="mt-6 max-w-xl text-xl leading-relaxed text-gray-600">
-              A lightweight collection of academic calculators and writing utilities, designed to be quick,
-              understandable, and private.
+              Calculate the grade you need on a final, estimate your GPA, plan study time, and check your writing
+              with quick, understandable tools that keep your inputs private.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link className={primaryButton} href="#categories">

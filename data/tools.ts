@@ -71,8 +71,11 @@ export const tools = [
   {
     slug: "final-grade-calculator",
     name: "Final Grade Calculator",
-    question: "What do I need on my final?",
-    description: "Find the exam score needed to finish with a target course grade.",
+    question: "What grade do I need on my final?",
+    description: "Calculate the final exam score you need to reach your target course grade.",
+    seoTitle: "Final Grade Calculator — What Grade Do I Need on My Final?",
+    seoDescription:
+      "Calculate what grade you need on your final exam to reach a target course grade. See the formula, worked example, and whether your goal is possible.",
     category: "grades",
     href: "/grades/final-grade-calculator",
     relatedTools: ["weighted-grade-calculator", "gpa-calculator", "grade-percentage-calculator"],

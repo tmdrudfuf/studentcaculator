@@ -14,13 +14,14 @@ type MetadataOptions = {
   title: string;
   description: string;
   path?: string;
+  absoluteTitle?: boolean;
 };
 
-export function createMetadata({ title, description, path = "/" }: MetadataOptions): Metadata {
+export function createMetadata({ title, description, path = "/", absoluteTitle = false }: MetadataOptions): Metadata {
   const canonical = new URL(path, siteConfig.url);
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: title } : title,
     description,
     alternates: { canonical },
     openGraph: {
@@ -35,8 +36,9 @@ export function createMetadata({ title, description, path = "/" }: MetadataOptio
 
 export function createToolMetadata(tool: ToolDefinition): Metadata {
   return createMetadata({
-    title: tool.name,
-    description: tool.description,
+    title: tool.seoTitle ?? tool.name,
+    description: tool.seoDescription ?? tool.description,
     path: tool.href,
+    absoluteTitle: Boolean(tool.seoTitle),
   });
 }

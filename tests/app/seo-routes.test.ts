@@ -2,6 +2,8 @@ import { describe, expect, it, vi } from "vitest";
 
 import robots from "@/app/robots";
 import sitemap from "@/app/sitemap";
+import { getRequiredTool } from "@/data/tools";
+import { createToolMetadata } from "@/lib/seo/metadata";
 
 describe("SEO routes", () => {
   it("includes every public route in the sitemap", () => {
@@ -29,5 +31,17 @@ describe("SEO routes", () => {
     vi.stubEnv("CF_PAGES_BRANCH", "feature/preview");
     expect(robots().rules).toEqual({ userAgent: "*", disallow: "/" });
     vi.unstubAllEnvs();
+  });
+
+  it("uses search-intent metadata for the final grade calculator", () => {
+    const metadata = createToolMetadata(getRequiredTool("final-grade-calculator"));
+
+    expect(metadata.title).toEqual({
+      absolute: "Final Grade Calculator — What Grade Do I Need on My Final?",
+    });
+    expect(metadata.description).toContain("what grade you need on your final exam");
+    expect(metadata.alternates?.canonical?.toString()).toBe(
+      "https://getschoolkit.com/grades/final-grade-calculator",
+    );
   });
 });

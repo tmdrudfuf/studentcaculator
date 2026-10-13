@@ -7,6 +7,8 @@ export type ToolDefinition = {
   name: string;
   question: string;
   description: string;
+  seoTitle?: string;
+  seoDescription?: string;
   category: ToolCategory;
   href: `/${ToolCategory}/${string}`;
   relatedTools: string[];

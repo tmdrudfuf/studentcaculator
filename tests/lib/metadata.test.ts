@@ -20,9 +20,10 @@ describe("metadata helpers", () => {
   });
 
   it("creates metadata from a tool registry entry", () => {
-    const metadata = createToolMetadata(tools[0]);
+    const tool = tools[0];
+    const metadata = createToolMetadata(tool);
 
-    expect(metadata.title).toBe(tools[0].name);
-    expect(metadata.description).toBe(tools[0].description);
+    expect(metadata.title).toEqual(tool.seoTitle ? { absolute: tool.seoTitle } : tool.name);
+    expect(metadata.description).toBe(tool.seoDescription ?? tool.description);
   });
 });

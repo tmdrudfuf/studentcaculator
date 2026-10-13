@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-import { BreadcrumbStructuredData } from "@/components/seo/StructuredData";
+import { ToolStructuredData } from "@/components/seo/StructuredData";
+import { guides } from "@/data/guides";
 import { getToolContent } from "@/data/tool-content";
 import { getCategory } from "@/data/tools";
 import type { ToolDefinition } from "@/types/tools";
@@ -17,10 +18,11 @@ type ToolPageLayoutProps = {
 export function ToolPageLayout({ tool, children, explanation }: ToolPageLayoutProps) {
   const category = getCategory(tool.category);
   const content = getToolContent(tool.slug);
+  const relatedGuide = guides.find((guide) => guide.relatedTools.some((slug) => slug === tool.slug));
 
   return (
     <main id="main-content">
-      <BreadcrumbStructuredData tool={tool} />
+      <ToolStructuredData faq={content.faq} tool={tool} />
       <header className="bg-white">
         <div className="mx-auto max-w-6xl px-5 pt-12 pb-4 sm:px-8 lg:pt-16">
           <nav aria-label="Breadcrumb" className="text-sm font-medium text-gray-600">
@@ -49,6 +51,16 @@ export function ToolPageLayout({ tool, children, explanation }: ToolPageLayoutPr
             <h2 className="font-bold tracking-tight text-gray-950">How it works</h2>
             <div className="mt-3 space-y-3 text-sm leading-6 text-gray-600">{explanation}</div>
           </section>
+          {relatedGuide ? (
+            <section className="rounded-2xl border border-emerald-200 bg-emerald-50/60 p-6">
+              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-800">Related guide</p>
+              <h2 className="mt-2 font-bold tracking-tight text-gray-950">{relatedGuide.title}</h2>
+              <p className="mt-2 text-sm leading-6 text-gray-600">{relatedGuide.description}</p>
+              <Link className="mt-4 inline-block font-semibold text-gray-950 underline underline-offset-4" href={`/guides/${relatedGuide.slug}`}>
+                Read the guide →
+              </Link>
+            </section>
+          ) : null}
           <RelatedTools tool={tool} />
         </aside>
       </div>
