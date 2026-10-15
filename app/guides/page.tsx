@@ -4,7 +4,7 @@ import { createMetadata } from "@/lib/seo/metadata";
 
 export const metadata = createMetadata({
   title: "Student Guides",
-  description: "Practical explanations for grades, GPA, weighted courses, and realistic study planning.",
+  description: "Practical, sourced explanations for grades, GPA, degree planning, study time, reading time, and word counts.",
   path: "/guides",
 });
 

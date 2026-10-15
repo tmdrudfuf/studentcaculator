@@ -20,6 +20,12 @@ export type GuideSection = {
   bullets?: readonly string[];
 };
 
+export type GuideSource = {
+  title: string;
+  publisher: string;
+  href: string;
+};
+
 export type GuideDefinition = {
   slug: string;
   title: string;
@@ -27,5 +33,8 @@ export type GuideDefinition = {
   category: string;
   readingMinutes: number;
   relatedTools: readonly string[];
+  publishedOn: string;
+  reviewedOn: string;
+  sources: readonly GuideSource[];
   sections: readonly GuideSection[];
 };

@@ -8,10 +8,12 @@ import { createToolMetadata } from "@/lib/seo/metadata";
 describe("SEO routes", () => {
   it("includes every public route in the sitemap", () => {
     const entries = sitemap();
-    expect(entries).toHaveLength(26);
+    expect(entries).toHaveLength(33);
     expect(entries.some((entry) => entry.url.endsWith("/grades/final-grade-calculator"))).toBe(true);
     expect(entries.some((entry) => entry.url.endsWith("/privacy"))).toBe(true);
     expect(entries.some((entry) => entry.url.endsWith("/guides/calculate-college-gpa"))).toBe(true);
+    expect(entries.some((entry) => entry.url.endsWith("/guides/estimate-reading-time"))).toBe(true);
+    expect(entries.some((entry) => entry.url.endsWith("/methodology"))).toBe(true);
     expect(entries.some((entry) => entry.url.endsWith("/terms"))).toBe(true);
     expect(entries.some((entry) => entry.url.endsWith("/contact"))).toBe(true);
   });

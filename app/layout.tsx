@@ -8,6 +8,7 @@ import { AdSenseScript } from "@/components/ads/AdSenseScript";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { WebsiteStructuredData } from "@/components/seo/StructuredData";
+import { adsenseConfig } from "@/lib/adsense/config";
 import { siteConfig } from "@/lib/seo/metadata";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
@@ -20,6 +21,9 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  other: {
+    "google-adsense-account": adsenseConfig.clientId,
+  },
 };
 
 export const viewport: Viewport = {

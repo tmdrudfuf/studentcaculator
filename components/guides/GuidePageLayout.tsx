@@ -6,6 +6,10 @@ import type { GuideDefinition } from "@/types/content";
 
 export function GuidePageLayout({ guide }: { guide: GuideDefinition }) {
   const relatedTools = guide.relatedTools.map(getRequiredTool);
+  const reviewedOn = new Intl.DateTimeFormat("en-US", {
+    dateStyle: "long",
+    timeZone: "UTC",
+  }).format(new Date(`${guide.reviewedOn}T00:00:00Z`));
 
   return (
     <main id="main-content">
@@ -24,7 +28,7 @@ export function GuidePageLayout({ guide }: { guide: GuideDefinition }) {
             {guide.title}
           </h1>
           <p className="mt-6 max-w-3xl text-xl leading-8 text-gray-600">{guide.description}</p>
-          <p className="mt-5 text-sm text-gray-500">Reviewed October 9, 2026</p>
+          <p className="mt-5 text-sm text-gray-500">Reviewed {reviewedOn}</p>
         </div>
       </header>
 
@@ -49,6 +53,32 @@ export function GuidePageLayout({ guide }: { guide: GuideDefinition }) {
             </section>
           ))}
         </div>
+
+        <section className="mt-16 border-t border-gray-200 pt-10">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-950">Sources and further reading</h2>
+          <p className="mt-3 leading-7 text-gray-600">
+            We prefer primary research, official registrar guidance, and first-party product documentation. Read our{" "}
+            <Link className="font-semibold text-gray-950 underline decoration-gray-300 underline-offset-4 hover:decoration-gray-950" href="/methodology">
+              editorial methodology
+            </Link>{" "}
+            for how sources and calculations are reviewed.
+          </p>
+          <ul className="mt-6 space-y-4">
+            {guide.sources.map((source) => (
+              <li className="rounded-xl border border-gray-200 p-4" key={source.href}>
+                <a
+                  className="font-semibold text-gray-950 underline decoration-gray-300 underline-offset-4 hover:decoration-gray-950"
+                  href={source.href}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  {source.title} ↗
+                </a>
+                <p className="mt-1 text-sm text-gray-600">{source.publisher}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <aside className="mt-16 rounded-2xl bg-gray-950 p-6 text-white sm:p-8">
           <h2 className="text-2xl font-bold tracking-tight">Use the related tools</h2>

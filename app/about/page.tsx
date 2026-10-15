@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { createMetadata } from "@/lib/seo/metadata";
 
 export const metadata = createMetadata({
@@ -24,6 +26,7 @@ export default function AboutPage() {
           <div className="mt-4 space-y-4">
             <p>Calculator logic is kept separate from the interface and covered by automated tests. Worked examples are checked against the same formulas shown on each page. Dates are handled as local calendar dates to avoid common time-zone and daylight-saving errors.</p>
             <p>Academic institutions can use different grade scales, rounding rules, repeat policies, and degree requirements. The site identifies these limitations instead of presenting a general formula as an official institutional decision.</p>
+            <p>Our <Link className="font-semibold text-gray-950 underline decoration-gray-300 underline-offset-4" href="/methodology">methodology page</Link> explains the source, testing, review, and correction standards used across the site.</p>
           </div>
         </section>
         <section>
@@ -35,7 +38,7 @@ export default function AboutPage() {
         </section>
         <section className="rounded-2xl bg-gray-50 p-6 sm:p-8">
           <h2 className="text-xl font-bold tracking-tight text-gray-950">Editorial note</h2>
-          <p className="mt-3">Content was last reviewed on October 9, 2026. Results are educational estimates. Always use your school&apos;s official syllabus, grade scale, academic calendar, and degree audit for decisions.</p>
+          <p className="mt-3">Content was last reviewed on October 14, 2026. Results are educational estimates. Always use your school&apos;s official syllabus, grade scale, academic calendar, and degree audit for decisions.</p>
         </section>
       </div>
     </main>

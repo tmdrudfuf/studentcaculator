@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...tools.map((tool) => tool.href),
     "/guides",
     ...guides.map((guide) => `/guides/${guide.slug}`),
+    "/methodology",
     "/about",
     "/privacy",
     "/terms",

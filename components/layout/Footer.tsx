@@ -4,6 +4,7 @@ import { categories } from "@/data/tools";
 
 const siteLinks = [
   { name: "Guides", href: "/guides" },
+  { name: "Methodology", href: "/methodology" },
   { name: "About", href: "/about" },
   { name: "Privacy", href: "/privacy" },
   { name: "Terms", href: "/terms" },
