@@ -3,10 +3,17 @@ export type FrequentlyAskedQuestion = {
   answer: string;
 };
 
+export type WorkedExample = {
+  heading: string;
+  scenario: string;
+  calculation: string;
+  takeaway: string;
+};
+
 export type ToolContent = {
   overview: readonly string[];
   steps: readonly string[];
-  example: string;
+  examples: readonly WorkedExample[];
   formula: string;
   interpretation: readonly string[];
   limitations: readonly string[];

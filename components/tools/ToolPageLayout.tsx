@@ -88,20 +88,33 @@ export function ToolPageLayout({ tool, children, explanation }: ToolPageLayoutPr
       </section>
 
       <section className="mx-auto max-w-6xl px-5 py-16 sm:px-8">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-2xl border border-gray-200 p-6 sm:p-8">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-950">Example</h2>
-            <p className="mt-3 leading-7 text-gray-600">{content.example}</p>
+        <div className="max-w-3xl">
+          <p className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-700">Worked examples</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-gray-950">See how the calculation works in common situations</h2>
+          <p className="mt-4 text-lg leading-8 text-gray-600">These fictional examples show which values to enter, how the formula uses them, and what the result means before you use your own information.</p>
+        </div>
+        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          {content.examples.map((example, index) => (
+            <article className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm" key={example.heading}>
+              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-emerald-700">Example {index + 1}</p>
+              <h3 className="mt-2 text-xl font-bold tracking-tight text-gray-950">{example.heading}</h3>
+              <p className="mt-4 leading-7 text-gray-600">{example.scenario}</p>
+              <div className="mt-5 border-l-2 border-emerald-500 pl-4">
+                <p className="text-sm font-semibold text-gray-950">Calculation</p>
+                <p className="mt-1 text-sm leading-6 text-gray-600">{example.calculation}</p>
+              </div>
+              <p className="mt-5 text-sm leading-6 text-gray-700"><span className="font-semibold text-gray-950">What it means: </span>{example.takeaway}</p>
+            </article>
+          ))}
+        </div>
+        <div className="mt-10 overflow-hidden rounded-2xl bg-gray-950 shadow-xl">
+          <div className="flex items-center gap-2 border-b border-white/10 bg-white/5 px-4 py-3">
+            <span aria-hidden="true" className="size-3 rounded-full bg-[#FF5F56]" />
+            <span aria-hidden="true" className="size-3 rounded-full bg-[#FFBD2E]" />
+            <span aria-hidden="true" className="size-3 rounded-full bg-[#27C93F]" />
+            <h2 className="ml-auto font-mono text-xs text-emerald-400">Formula</h2>
           </div>
-          <div className="overflow-hidden rounded-2xl bg-gray-950 shadow-xl">
-            <div className="flex items-center gap-2 border-b border-white/10 bg-white/5 px-4 py-3">
-              <span aria-hidden="true" className="size-3 rounded-full bg-[#FF5F56]" />
-              <span aria-hidden="true" className="size-3 rounded-full bg-[#FFBD2E]" />
-              <span aria-hidden="true" className="size-3 rounded-full bg-[#27C93F]" />
-              <h2 className="ml-auto font-mono text-xs text-emerald-400">Formula</h2>
-            </div>
-            <p className="p-6 font-mono text-sm leading-7 break-words text-white/85 sm:p-8">{content.formula}</p>
-          </div>
+          <p className="p-6 font-mono text-sm leading-7 break-words text-white/85 sm:p-8">{content.formula}</p>
         </div>
       </section>
 

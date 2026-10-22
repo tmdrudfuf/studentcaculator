@@ -7,7 +7,11 @@ export const toolContent = {
       "Before entering values, check whether the gradebook ignores ungraded work or counts it as zero. Projects, attendance, extra credit, or other remaining assignments should be included separately because they change the result.",
     ],
     steps: ["Confirm what the current grade includes.", "Enter the final exam's percentage weight.", "Enter the overall course percentage you want.", "Compare the result with the possible score range and course policy."],
-    example: "If your current grade is 80%, the final is worth 20%, and you want an 84%, completed work contributes 64 course points. The remaining 20 points must come from the final, so you need 100% on the exam.",
+    examples: [
+      { heading: "What do I need on my final to earn an 84%?", scenario: "Your current grade is 80%, the final exam is worth 20% of the course, and your target course grade is 84%.", calculation: "Completed work contributes 80 × 0.80 = 64 course points. You need 20 more points, so 20 ÷ 0.20 = 100% on the final.", takeaway: "The target is possible only with a perfect final exam score under these assumptions." },
+      { heading: "What final exam score do I need to pass?", scenario: "Your current grade is 72%, the final is worth 25%, and your course requires 70% to pass.", calculation: "Completed work contributes 72 × 0.75 = 54 points. The remaining 16 points require 16 ÷ 0.25 = 64% on the final.", takeaway: "A final score of 64% reaches exactly 70%, before any course-specific rounding." },
+      { heading: "Is an A still possible before the final?", scenario: "Your current grade is 82%, the final is worth 30%, and you want a 90% overall course grade.", calculation: "Completed work contributes 82 × 0.70 = 57.4 points. Reaching 90 requires 32.6 ÷ 0.30 = 108.67% on the final.", takeaway: "The target is not reachable from the final alone unless the course offers a curve or extra credit." },
+    ],
     formula: "Required score = [desired grade − current grade × (1 − final weight)] ÷ final weight",
     interpretation: ["A result from 0% to 100% is mathematically reachable under the stated assumptions. A result above 100% means the final alone cannot reach the target.", "A result at or below 0% means the target is already secured, although a mandatory-exam policy may still require attendance."],
     limitations: ["Does not include curves, extra credit, dropped work, replacement exams, or multiple remaining assignments.", "Letter-grade cutoffs and rounding policies vary by course.", "The official gradebook remains the final authority."],
@@ -24,7 +28,11 @@ export const toolContent = {
   "grade-percentage-calculator": {
     overview: ["A grade percentage compares points earned with the points available on one assignment, exam, or points-based collection of work.", "The percentage does not automatically show the effect on the overall course. That also requires the assignment or category weight."],
     steps: ["Enter the points credited after penalties or corrections.", "Enter the maximum points for the same item.", "Compare the percentage with the course scale.", "Use it in a weighted calculation if needed."],
-    example: "Earning 45 out of 50 points gives 45 ÷ 50 × 100, or 90%. If that assignment is worth 10% of the course, it contributes 9 percentage points to the final grade.",
+    examples: [
+      { heading: "What percentage is 45 points out of 50?", scenario: "An assignment is worth 50 points and the gradebook shows that you earned 45 points.", calculation: "Divide 45 by 50 and multiply by 100: 45 ÷ 50 × 100 = 90%.", takeaway: "You earned 90% of the available points; the matching letter grade depends on the course scale." },
+      { heading: "What percentage is 37 points out of 40?", scenario: "You received 37 points on a quiz with 40 total points available.", calculation: "Divide 37 by 40 and multiply by 100: 37 ÷ 40 × 100 = 92.5%.", takeaway: "Keep the decimal until you confirm whether the instructor rounds scores in the gradebook." },
+      { heading: "Can an assignment grade be above 100%?", scenario: "A project has 100 regular points, and 5 extra-credit points raise your earned score to 103.", calculation: "Divide 103 by 100 and multiply by 100: 103 ÷ 100 × 100 = 103%.", takeaway: "A result above 100% can be valid when extra credit increases earned points without increasing total points." },
+    ],
     formula: "Percentage = (points earned ÷ total points) × 100",
     interpretation: ["A 90% result means nine out of every ten available points were earned. The matching letter grade depends on the course scale.", "A value above 100% can be valid when extra-credit points are added without increasing the total possible points."],
     limitations: ["Does not know the letter-grade scale.", "Does not apply assignment weights, dropped scores, or category rules.", "A zero or negative total cannot produce a meaningful percentage."],
@@ -39,7 +47,11 @@ export const toolContent = {
   "weighted-grade-calculator": {
     overview: ["Weighted grading gives categories different shares of the course grade. A larger weight affects the course more strongly even when it contains fewer raw points.", "The calculator reports a full-course contribution and a normalized grade across entered weights, which is useful when some categories are not graded yet."],
     steps: ["List categories from the syllabus.", "Enter the current percentage in each category.", "Enter each course weight and confirm the total.", "Interpret normalized and full-course results separately."],
-    example: "A 90% exam category worth 40% contributes 36 course points. An 80% homework category worth 60% contributes 48 points. Together they produce an 84% grade.",
+    examples: [
+      { heading: "How do exams and homework combine?", scenario: "Your exam average is 90% and worth 40% of the course. Homework is 80% and worth the remaining 60%.", calculation: "Exams contribute 90 × 0.40 = 36 points. Homework contributes 80 × 0.60 = 48 points. The total is 84%.", takeaway: "Because all category weights total 100%, the weighted course grade is 84%." },
+      { heading: "What is my grade before the final category?", scenario: "Assignments are 88% with a 50% weight and quizzes are 76% with a 20% weight; the final 30% is not graded yet.", calculation: "The entered work contributes 44 + 15.2 = 59.2 course points. Normalizing across the entered 70% gives 59.2 ÷ 0.70 = 84.57%.", takeaway: "Your performance on graded categories is about 84.57%, while their current full-course contribution is 59.2 points." },
+      { heading: "Which category changes my grade the most?", scenario: "Projects are 95% at a 25% weight, exams are 78% at 50%, and participation is 100% at 25%.", calculation: "The contributions are 23.75, 39, and 25 points. Together they produce 87.75%.", takeaway: "Exams have the greatest influence because their 50% weight is twice either other category's weight." },
+    ],
     formula: "Normalized grade = Σ(category grade × category weight) ÷ Σ(entered weights)",
     interpretation: ["When weights total 100%, the normalized grade and full-course contribution match. With a smaller total, normalization describes performance on the entered portion.", "A large difference between the two values is expected when much of the course is still ungraded."],
     limitations: ["Does not automatically drop assignments or calculate category percentages.", "Assumes every entered category percentage is current.", "Gradebook rounding may create a small difference."],
@@ -54,7 +66,11 @@ export const toolContent = {
   "gpa-calculator": {
     overview: ["Semester GPA is a credit-weighted average. Each letter grade becomes a numeric value that is multiplied by course credits to produce quality points.", "The calculator uses a standard US 4.0 scale. Verify plus and minus values because institutions can use different conversions."],
     steps: ["Add each GPA-bearing course.", "Select its final or estimated letter grade.", "Enter GPA credits, not weekly class hours.", "Compare the estimate with the school's scale and exclusion rules."],
-    example: "A three-credit A produces 12 quality points and a three-credit B produces 9. Dividing 21 points by 6 credits gives a 3.50 semester GPA.",
+    examples: [
+      { heading: "What GPA do an A and a B produce?", scenario: "You earn an A in one three-credit course and a B in another three-credit course on a standard 4.0 scale.", calculation: "The A contributes 4.0 × 3 = 12 quality points and the B contributes 3.0 × 3 = 9. The result is 21 ÷ 6 = 3.50.", takeaway: "With equal credits, the two course grades contribute equally to a 3.50 semester GPA." },
+      { heading: "How does a four-credit course affect GPA?", scenario: "You earn an A in a three-credit course and a C in a four-credit course.", calculation: "The courses contribute 12 and 8 quality points. Divide 20 total points by 7 credits to get about 2.86.", takeaway: "The four-credit C pulls the GPA more strongly than the three-credit A because credits determine weight." },
+      { heading: "Should a pass/fail course count in GPA?", scenario: "You have three letter-graded courses plus a pass in a one-credit seminar that your school excludes from GPA.", calculation: "Calculate quality points and GPA credits using only the three courses that receive grade points; omit the pass/fail seminar.", takeaway: "Include pass/fail work only when your institution assigns it grade points, and verify the transcript policy." },
+    ],
     formula: "Semester GPA = Σ(grade points × course credits) ÷ Σ(course credits)",
     interpretation: ["Courses with more credits have more influence. A four-credit course affects the result twice as much as a two-credit course.", "The result covers only the courses entered and does not include earlier terms."],
     limitations: ["Pass/fail, withdrawals, repeats, and transfer courses may follow special rules.", "The default scale may not match the institution.", "The estimate does not determine academic standing or financial-aid eligibility."],
@@ -69,7 +85,11 @@ export const toolContent = {
   "cumulative-gpa-calculator": {
     overview: ["Cumulative GPA combines an existing record with a new semester by converting both to quality points. Credits determine how strongly each record affects the result.", "Use GPA credits shown on the transcript when possible because attempted, earned, and GPA credits can differ."],
     steps: ["Enter the official current GPA.", "Enter the credits included in that GPA.", "Enter the new semester GPA and its credits.", "Confirm special-course rules with the registrar."],
-    example: "A 3.00 GPA across 60 credits represents 180 quality points. A 4.00 across 15 credits adds 60. Dividing 240 by 75 gives a 3.20 cumulative GPA.",
+    examples: [
+      { heading: "How much can a 4.0 semester raise a 3.0 GPA?", scenario: "You have a 3.00 cumulative GPA over 60 credits and earn a 4.00 across 15 new credits.", calculation: "Existing work has 180 quality points and the semester adds 60. Divide 240 by 75 credits to get 3.20.", takeaway: "A perfect 15-credit term raises the cumulative GPA from 3.00 to 3.20." },
+      { heading: "How will a 3.5 semester change my GPA?", scenario: "You have a 3.20 GPA over 45 credits and expect a 3.50 GPA over the next 15 credits.", calculation: "Existing points are 3.20 × 45 = 144; new points are 52.5. Divide 196.5 by 60 to get 3.275.", takeaway: "The estimated cumulative GPA is 3.28 when displayed to two decimal places." },
+      { heading: "Why did one strong semester barely move my GPA?", scenario: "You have a 3.40 GPA over 105 credits and earn a 3.80 over 15 additional credits.", calculation: "Combine 357 existing quality points with 57 new points, then divide 414 by 120 to get 3.45.", takeaway: "A long academic record changes slowly because one semester represents a small share of total credits." },
+    ],
     formula: "New GPA = (current GPA × current credits + semester GPA × semester credits) ÷ (current credits + semester credits)",
     interpretation: ["A large completed credit total makes cumulative GPA move slowly because a new semester is a smaller part of the record.", "The result should normally fall between the current and semester GPAs."],
     limitations: ["Assumes both GPAs use the same scale.", "Cannot apply grade replacement or academic forgiveness.", "Transcript rounding may differ from internal precision."],
@@ -84,7 +104,11 @@ export const toolContent = {
   "target-gpa-calculator": {
     overview: ["A target GPA calculation estimates the average grade points required across future credits to reach a desired cumulative GPA.", "Use a current GPA and GPA-credit total from the same official record and the same grade-point scale."],
     steps: ["Enter current GPA and included credits.", "Enter the desired cumulative GPA.", "Enter upcoming GPA credits.", "Compare the required result with the maximum scale."],
-    example: "A 3.00 over 60 credits represents 180 quality points. Reaching 3.20 after 15 more credits requires 240 total points, so the new credits must add 60: a 4.00 GPA.",
+    examples: [
+      { heading: "What GPA do I need to raise a 3.0 to 3.2?", scenario: "You have a 3.00 cumulative GPA over 60 credits and want a 3.20 after 15 more credits.", calculation: "The target requires 3.20 × 75 = 240 total quality points. Subtract 180 existing points and divide 60 by 15 to get 4.00.", takeaway: "You need a 4.00 average across all 15 upcoming GPA credits to reach 3.20." },
+      { heading: "Can I raise a 2.8 GPA to 3.0 this semester?", scenario: "You have a 2.80 GPA over 30 credits and will complete 15 additional credits.", calculation: "A 3.00 target across 45 credits needs 135 points. After subtracting 84 existing points, 51 ÷ 15 gives a required 3.40.", takeaway: "The target is mathematically reachable with a 3.40 semester GPA, subject to your school's scale." },
+      { heading: "When is a target GPA mathematically impossible?", scenario: "You have a 3.10 GPA over 90 credits and want a 3.50 after only 12 more credits.", calculation: "The target needs 357 total points. Subtract 279 existing points and divide 78 by 12 to get 6.50.", takeaway: "A required 6.50 exceeds a 4.0 scale, so the target cannot be reached within those 12 credits." },
+    ],
     formula: "Required GPA = [target GPA × (current credits + upcoming credits) − current GPA × current credits] ÷ upcoming credits",
     interpretation: ["A required GPA above the maximum means the target cannot be reached within the entered credits.", "A value at or below zero means the target is already reached under the inputs."],
     limitations: ["Assumes every upcoming credit is included in GPA.", "Does not model individual courses or grade replacement.", "A rounded current GPA can create a small difference."],
@@ -99,7 +123,11 @@ export const toolContent = {
   "credit-completion-calculator": {
     overview: ["Credit completion measures progress toward a numeric program requirement. It does not prove that every required subject or residency rule is satisfied.", "Use officially posted credits. In-progress credits can be modeled separately but are not earned until the institution awards them."],
     steps: ["Find the program-credit requirement in the catalog or degree audit.", "Enter accepted completed credits.", "Review the percentage and remaining amount.", "Compare with required courses and other audit rules."],
-    example: "Completing 72 of 120 required credits means the numeric requirement is 60% complete and 48 credits remain, although specific required courses may still be missing.",
+    examples: [
+      { heading: "What percentage of a 120-credit degree is complete?", scenario: "Your degree requires 120 credits and your degree audit shows 72 accepted completed credits.", calculation: "Divide 72 by 120 to get 60%. Subtract 72 from 120 to find 48 remaining credits.", takeaway: "You have completed 60% of the numeric credit requirement, but required courses may still remain." },
+      { heading: "How many credits remain after junior year?", scenario: "A program requires 128 credits and you have completed 96 credits that apply to the program.", calculation: "The completion rate is 96 ÷ 128 × 100 = 75%, and 128 − 96 = 32 credits remain.", takeaway: "The numeric requirement is three-quarters complete; course sequencing will determine the actual timeline." },
+      { heading: "Should in-progress courses count as completed?", scenario: "You have earned 84 of 120 required credits and are currently enrolled in 15 more credits.", calculation: "The official completed view is 84 ÷ 120 = 70%. A separate projection is 99 ÷ 120 = 82.5% if all 15 credits are earned and accepted.", takeaway: "Keep earned progress separate from the projection until the institution posts the in-progress credits." },
+    ],
     formula: "Completion percentage = (completed credits ÷ required credits) × 100",
     interpretation: ["Remaining credits show quantity, not the number of semesters. Prerequisites, availability, and credit limits shape the timeline.", "A result of 100% only means the entered numeric total meets the requirement."],
     limitations: ["Does not read a degree audit.", "Cannot decide whether transfer or repeated credits apply.", "Catalog-year and residency rules may change the accepted total."],
@@ -114,7 +142,11 @@ export const toolContent = {
   "graduation-countdown": {
     overview: ["The graduation countdown measures calendar days between today and a selected date. It helps turn a distant milestone into a visible planning window.", "The ceremony date may differ from degree completion, final exams, move-out, or application deadlines. Track those separately."],
     steps: ["Choose the official date you want to track.", "Review the local calendar-day result.", "Save it in this browser if desired.", "Add earlier academic milestones to your calendar."],
-    example: "If graduation is 100 local calendar days after today, the countdown reports 100 days and changes when the device enters the next local date.",
+    examples: [
+      { heading: "How many calendar days are left until graduation?", scenario: "Your ceremony is exactly 100 local calendar dates after today.", calculation: "The selected graduation date minus today's local date equals 100 calendar days.", takeaway: "The countdown includes weekends and holidays and updates after your device enters the next local date." },
+      { heading: "Which graduation date should I enter?", scenario: "Final exams end on May 10, degree requirements close on May 15, and the ceremony is May 20.", calculation: "Run the countdown with May 20 for the ceremony, then track May 10 and May 15 as separate planning deadlines.", takeaway: "Choose the date that answers your question; one countdown should not replace earlier academic deadlines." },
+      { heading: "What happens after graduation day passes?", scenario: "You open the saved countdown on the calendar date after your selected graduation date.", calculation: "The date difference is negative, so the tool reports the milestone as completed instead of showing negative days.", takeaway: "Update or remove the saved date if you want to track a different academic milestone." },
+    ],
     formula: "Days remaining = selected graduation calendar date − today's local calendar date",
     interpretation: ["The count includes weekends and holidays. It is not a count of class meetings or business days.", "A past date is reported as completed rather than a negative countdown."],
     limitations: ["Does not verify the school calendar.", "Does not account for ceremony time or travel time zones.", "Saved data is limited to the current browser."],
@@ -129,7 +161,11 @@ export const toolContent = {
   "study-time-calculator": {
     overview: ["This calculator divides a total study-hour goal across available days. The result is a baseline that can be redistributed around real commitments.", "A useful total includes reading, practice, recall, drafting, feedback, and review rather than a guessed round number."],
     steps: ["List tasks and estimate total hours.", "Count genuinely available days.", "Calculate the daily baseline.", "Schedule specific blocks and add buffer time."],
-    example: "A 15-hour goal contains 900 minutes. Across 10 days, the baseline is 90 minutes per day, which can be redistributed between busy and open days.",
+    examples: [
+      { heading: "How long should I study each day for an exam?", scenario: "You estimate 15 total study hours and have 10 genuinely available days before the exam.", calculation: "Convert 15 hours to 900 minutes, then divide 900 by 10 to get 90 minutes per day.", takeaway: "Use 90 minutes as a baseline and redistribute sessions around busier days while preserving the total." },
+      { heading: "How do I split 8 study hours across 5 days?", scenario: "A quiz review plan needs 8 focused hours, and your schedule has five usable study days.", calculation: "Eight hours equals 480 minutes. Divide 480 by 5 to get 96 minutes per day.", takeaway: "You could schedule four 90-minute days and one 120-minute day instead of forcing identical sessions." },
+      { heading: "What if the daily study target is unrealistic?", scenario: "A project needs an estimated 20 hours, but only four days remain before the deadline.", calculation: "Twenty hours equals 1,200 minutes; 1,200 ÷ 4 = 300 minutes, or 5 hours per day.", takeaway: "If five daily hours will not fit, reduce scope where allowed, seek help, or protect more time immediately." },
+    ],
     formula: "Minutes per day = total study hours × 60 ÷ available days",
     interpretation: ["If the daily number does not fit, revise scope, start earlier, or protect more days rather than planning impossible time.", "Equal daily sessions are not required; consistent contact and completed tasks matter more."],
     limitations: ["Cannot estimate how long the subject should take.", "Does not account for task difficulty or study quality.", "Does not save blocks to a calendar."],
@@ -144,7 +180,11 @@ export const toolContent = {
   "semester-countdown": {
     overview: ["The semester countdown shows calendar days and weekdays before an end date, separating the full window from typical workdays.", "Use the official academic calendar or choose a more relevant final-exam or project date."],
     steps: ["Find the official end date.", "Review calendar days and weekdays.", "Subtract holidays and unavailable dates when planning.", "Save the date locally if desired."],
-    example: "If the semester ends in 14 calendar days, the result also counts Monday-through-Friday dates. A campus holiday still appears as a weekday.",
+    examples: [
+      { heading: "How many days are left in the semester?", scenario: "The official semester end date is 14 local calendar days after today.", calculation: "The calendar-day result is 14; the tool separately counts Monday-through-Friday dates within that range.", takeaway: "Use calendar days for the full window and weekdays as a planning estimate, not as confirmed class days." },
+      { heading: "Does the semester countdown exclude holidays?", scenario: "The remaining period contains ten weekdays, but one Monday is a campus holiday.", calculation: "The tool still reports ten weekdays because it does not read your institution's holiday calendar.", takeaway: "Subtract campus closures, reading days, and personal unavailable dates when building the actual study plan." },
+      { heading: "Should I use the last class day or final exam date?", scenario: "Classes finish December 5, but your last final exam takes place on December 12.", calculation: "Use December 12 to plan all remaining academic work, or run a second countdown for December 5 if both milestones matter.", takeaway: "The best end date is the deadline relevant to your own workload, not necessarily the ceremonial semester end." },
+    ],
     formula: "Days remaining = semester end calendar date − today's local calendar date",
     interpretation: ["Weekdays are a simple Monday-to-Friday count, not guaranteed class days.", "On or after the selected date, the countdown reports completion."],
     limitations: ["Does not exclude holidays or closures.", "Does not know course meeting schedules.", "Saved data remains in the current browser."],
@@ -159,7 +199,11 @@ export const toolContent = {
   "word-counter": {
     overview: ["The word counter measures words, characters, sentences, and non-empty paragraphs while you type. It helps check limits and inspect draft structure.", "Counting rules differ for hyphens, citations, headings, and references. Use the submission platform's count when a strict limit applies."],
     steps: ["Paste or type the draft.", "Compare totals with the instructions.", "Use sentence and paragraph counts to inspect structure.", "Remove the text when finished; it is not uploaded or saved."],
-    example: "A 1,200-word paper with 12 paragraphs averages about 100 words per paragraph, helping identify unusually long or short sections for review.",
+    examples: [
+      { heading: "How close is my essay to a 1,500-word target?", scenario: "Your draft contains 1,320 words and the assignment target is 1,500 words.", calculation: "Subtract 1,320 from 1,500 to find a difference of 180 words.", takeaway: "Use the gap to identify missing reasoning or evidence rather than adding filler solely to reach the target." },
+      { heading: "How can paragraph count help with revision?", scenario: "A 1,200-word paper contains 12 paragraphs, but two body paragraphs are much longer than the others.", calculation: "The average is about 100 words per paragraph, which provides a comparison point rather than a required length.", takeaway: "Review unusually long paragraphs for multiple ideas and short paragraphs for claims that may need support." },
+      { heading: "Do references count toward the essay word limit?", scenario: "Your document has a 1,450-word main text and a 300-word reference list, while the rubric excludes references.", calculation: "Paste or count only the main text to use 1,450 as the relevant assignment word count.", takeaway: "Follow the instructor's rule for titles, quotations, footnotes, and references because the counter cannot infer exclusions." },
+    ],
     formula: "Words are non-whitespace character groups; paragraphs are non-empty blocks separated by blank lines.",
     interpretation: ["Counts describe length, not quality. A draft can meet the requirement and still need stronger evidence or organization.", "Character totals help with technical limits, while sentence and paragraph counts provide only a rough structural view."],
     limitations: ["Sentence counting may differ around abbreviations and quotations.", "Does not check grammar, citations, or originality.", "Other editors can use different word boundaries."],
@@ -174,7 +218,11 @@ export const toolContent = {
   "reading-time-calculator": {
     overview: ["Reading time estimates duration from word count and words per minute. It can help plan assignments, scripts, and study sessions.", "Actual speed changes with vocabulary, layout, prior knowledge, notes, and figures. Dense material usually needs a slower pace."],
     steps: ["Enter the word count.", "Choose a pace that matches the reader and material.", "Round up for scheduling.", "Add separate time for notes, exercises, and rereading."],
-    example: "A 1,000-word article at 200 words per minute takes about 5 minutes of uninterrupted reading. Notes or unfamiliar terms can make the session longer.",
+    examples: [
+      { heading: "How long does a 1,000-word article take to read?", scenario: "The article contains 1,000 words and you choose a reading pace of 200 words per minute.", calculation: "Divide 1,000 by 200 to estimate 5 minutes of uninterrupted reading.", takeaway: "Add separate time for notes, unfamiliar vocabulary, diagrams, or questions required by the assignment." },
+      { heading: "How long will a 3,000-word chapter take?", scenario: "A chapter has 3,000 words and your measured reading pace is about 150 words per minute.", calculation: "Divide 3,000 by 150 to estimate 20 minutes of continuous reading.", takeaway: "A personal reading pace gives a more useful estimate than a generic average, especially for technical material." },
+      { heading: "How much time should I add for note-taking?", scenario: "A 2,400-word reading takes about 12 minutes at 200 words per minute, and you plan to annotate each section.", calculation: "Start with the 12-minute reading estimate, then add a separate buffer—for example, 8 minutes—for annotation and review.", takeaway: "The calculator estimates reading only; active study tasks should be scheduled explicitly rather than hidden in the pace." },
+    ],
     formula: "Reading time in minutes = word count ÷ reading speed in words per minute",
     interpretation: ["The result estimates uninterrupted text reading and is a planning starting point.", "For spoken material, use a slower pace and rehearse because pauses and transitions add time."],
     limitations: ["Does not measure text complexity.", "Images, equations, and exercises are not represented.", "Accessibility needs and language familiarity change pace."],

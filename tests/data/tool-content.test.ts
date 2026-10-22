@@ -8,7 +8,13 @@ describe("tool SEO content", () => {
     expect(Object.keys(toolContent)).toHaveLength(tools.length);
     for (const tool of tools) {
       const content = getToolContent(tool.slug);
-      expect(content.example.length).toBeGreaterThan(20);
+      expect(content.examples).toHaveLength(3);
+      for (const example of content.examples) {
+        expect(example.heading.length).toBeGreaterThan(10);
+        expect(example.scenario.length).toBeGreaterThan(20);
+        expect(example.calculation.length).toBeGreaterThan(20);
+        expect(example.takeaway.length).toBeGreaterThan(20);
+      }
       expect(content.formula.length).toBeGreaterThan(10);
       expect(content.overview.length).toBeGreaterThanOrEqual(2);
       expect(content.steps.length).toBeGreaterThanOrEqual(4);
